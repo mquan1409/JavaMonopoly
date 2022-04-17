@@ -13,56 +13,19 @@ import javax.swing.SwingConstants;
 import javax.swing.text.LabelView;
 
 public class Start {
+    private static int[] player_positions;
+    private static Player[] players;
+
+    public static void Test(){
+        player_positions[0] += 2;
+    }
     public static void main(String args[]){
-        //Player positions
-        Coord[] player1_coords = new Coord[41];
-        Coord[] player2_coords = new Coord[41];
-        Coord[] player3_coords = new Coord[41];
-        Coord[] player4_coords = new Coord[41];
-
-        int x=24;
-        int y=30;
-
-        //Row 1
-        for(int i=1; i<11; i++)
-            player1_coords[i] = new Coord(520 - (x+45*i+5), y+10+450);
-        for(int i=1; i<11; i++)
-            player2_coords[i] = new Coord(520 - (x+45*i+5), y+450+15+10);
-        for(int i=1; i<11; i++)
-            player3_coords[i] = new Coord(520 - (x+45*i+15+5), y+450+10);
-        for(int i=1; i<11; i++)
-            player4_coords[i] = new Coord(520 - (x+45*i+15+5), y+450+15+10);
-
-        //Row 2
-        for(int i=1; i<11; i++)
-            player1_coords[10 + i] = new Coord(x-5, 525 - (y+45*i));
-        for(int i=1; i<11; i++)
-            player2_coords[10 + i] = new Coord(x+10, 525 - (y+45*i));
-        for(int i=1; i<11; i++)
-            player3_coords[10 + i] = new Coord(x-5, 525 - (y+45*i+15));
-        for(int i=1; i<11; i++)
-            player4_coords[10 + i] = new Coord(x+10, 525 - (y+45*i+15));
-
-        //Row 3
-        for(int i=1; i<11; i++)
-            player1_coords[20 + i] = new Coord(x+45*i, y);
-        for(int i=1; i<11; i++)
-            player2_coords[20 + i] = new Coord(x+45*i+15, y);
-        for(int i=1; i<11; i++)
-            player3_coords[20 + i] = new Coord(x+45*i, y+15);
-        for(int i=1; i<11; i++)
-            player4_coords[20 + i] = new Coord(x+45*i+15, y+15);
-
-        //Row 4
-        for(int i=1; i<11; i++)
-            player1_coords[30 + i] = new Coord(x+455, y+45*i);
-        for(int i=1; i<11; i++)
-            player2_coords[30 + i] = new Coord(x+455+15, y+45*i);
-        for(int i=1; i<11; i++)
-            player3_coords[30 + i] = new Coord(x+455, y+45*i+15);
-        for(int i=1; i<11; i++)
-            player4_coords[30 + i] = new Coord(x+455+15, y+45*i+15);
-
+        player_positions = new int[4];               //store the positions of player 1-4
+        players = new Player[4];
+        for(int i = 0; i < 4; i ++){
+            players[i] = new Player();
+            player_positions[i] = players[i].GetPosition();
+        }
         JFrame frame = new JFrame("Start");
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,11 +36,7 @@ public class Start {
         label.setBackground(new Color(255,0,0));
         //frame.add(label);
         //frame.add(triangles);
-        LayeredPane layeredPane = new LayeredPane(
-            player1_coords, 
-            player2_coords, 
-            player3_coords, 
-            player4_coords);
+        LayeredPane layeredPane = new LayeredPane(player_positions);
         layeredPane.setOpaque(true);
         layeredPane.SetOriginFrame(frame);
         frame.setContentPane(layeredPane);

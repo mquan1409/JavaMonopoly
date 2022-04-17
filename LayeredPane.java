@@ -14,15 +14,68 @@ public class LayeredPane extends JPanel implements ActionListener {
     private Board board;
     private JLayeredPane layeredPane;
     private JFrame frame;
-    private int counter_test = 10;
-    private Coord[] coord_p1;
+    private int counter_test = 0;
+    private int[] player_positions;
+    private Coord[] coords_p1;
+    private Coord[] coords_p2;
+    private Coord[] coords_p3;
+    private Coord[] coords_p4;
     private PlayerGUI GUI_p1;
-    public LayeredPane (
-            Coord[] coord_p1, 
-            Coord[] coord_p2, 
-            Coord[] coord_p3, 
-            Coord[] coord_p4){
-        this.coord_p1 = coord_p1;
+    public LayeredPane (int[] player_positions){
+        this.player_positions = player_positions;
+        coords_p1 = new Coord[41];
+        coords_p2 = new Coord[41];
+        coords_p3 = new Coord[41];
+        coords_p4 = new Coord[41];
+
+        int x=24;
+        int y=30;
+
+        //Row 1
+        for(int i=1; i<11; i++)
+            coords_p1[i] = new Coord(520 - (x+45*i+5), y+10+450);
+        for(int i=1; i<11; i++)
+            coords_p2[i] = new Coord(520 - (x+45*i+5), y+450+15+10);
+        for(int i=1; i<11; i++)
+            coords_p3[i] = new Coord(520 - (x+45*i+15+5), y+450+10);
+        for(int i=1; i<11; i++)
+            coords_p4[i] = new Coord(520 - (x+45*i+15+5), y+450+15+10);
+
+        //Row 2
+        for(int i=1; i<11; i++)
+            coords_p1[10 + i] = new Coord(x-5, 525 - (y+45*i));
+        for(int i=1; i<11; i++)
+            coords_p2[10 + i] = new Coord(x+10, 525 - (y+45*i));
+        for(int i=1; i<11; i++)
+            coords_p3[10 + i] = new Coord(x-5, 525 - (y+45*i+15));
+        for(int i=1; i<11; i++)
+            coords_p4[10 + i] = new Coord(x+10, 525 - (y+45*i+15));
+
+        //Row 3
+        for(int i=1; i<11; i++)
+            coords_p1[20 + i] = new Coord(x+45*i, y);
+        for(int i=1; i<11; i++)
+            coords_p2[20 + i] = new Coord(x+45*i+15, y);
+        for(int i=1; i<11; i++)
+            coords_p3[20 + i] = new Coord(x+45*i, y+15);
+        for(int i=1; i<11; i++)
+            coords_p4[20 + i] = new Coord(x+45*i+15, y+15);
+
+        //Row 4
+        for(int i=1; i<11; i++)
+            coords_p1[30 + i] = new Coord(x+455, y+45*i);
+        for(int i=1; i<11; i++)
+            coords_p2[30 + i] = new Coord(x+455+15, y+45*i);
+        for(int i=1; i<11; i++)
+            coords_p3[30 + i] = new Coord(x+455, y+45*i+15);
+        for(int i=1; i<11; i++)
+            coords_p4[30 + i] = new Coord(x+455+15, y+45*i+15);
+
+        coords_p1[0] = coords_p1[40];
+        coords_p2[0] = coords_p2[40];
+        coords_p3[0] = coords_p3[40];
+        coords_p4[0] = coords_p4[40];
+
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(800, 800));
         board = new Board();
@@ -42,8 +95,10 @@ public class LayeredPane extends JPanel implements ActionListener {
         GUI_p1.setBackground(Color.PINK);
         GUI_p1.setForeground(Color.BLACK);
         GUI_p1.setBorder(null);
-        counter_test ++;
-        GUI_p1.setBounds(coord_p1[counter_test].x, coord_p1[counter_test].y, 140, 140);
+        GUI_p1.setBounds(
+            coords_p1[player_positions[0]].x, 
+            coords_p1[player_positions[0]].y, 
+            140, 140);
         layeredPane.add(GUI_p1, 0);
 
         var button = new JButton("Click");
@@ -60,6 +115,8 @@ public class LayeredPane extends JPanel implements ActionListener {
         this.frame = frame;
     }
     public void actionPerformed(ActionEvent e){
+        Start.Test();
+        counter_test ++;
         System.out.print(layeredPane.getComponentCountInLayer(0));
         System.out.println("Clicked");
         layeredPane.remove(GUI_p1);
@@ -69,8 +126,7 @@ public class LayeredPane extends JPanel implements ActionListener {
         GUI_p1.setBackground(Color.PINK);
         GUI_p1.setForeground(Color.BLACK);
         GUI_p1.setBorder(null);
-        counter_test ++;
-        GUI_p1.setBounds(coord_p1[counter_test].x, coord_p1[counter_test].y, 140, 140);
+        GUI_p1.setBounds(coords_p1[player_positions[0]].x, coords_p1[player_positions[0]].y, 140, 140);
         layeredPane.add(GUI_p1, 0);
         frame.repaint();
         frame.revalidate();

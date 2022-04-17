@@ -5,6 +5,13 @@ public class Player {
     private int Id;
     private int[] deeds_owned;
     private String name;
+    private int position;
+    public int GetPosition(){
+        return position;
+    }
+    public void SetPosition(int value){
+        position = value;
+    }
     public String GetName(){
         return name;
     }
@@ -29,5 +36,6 @@ public class Player {
     public Player(){
         deeds_owned = new int[28];
         money_owned = 1500;
+        position = 0;
     }
 }
