@@ -35,7 +35,6 @@ public class LayeredPane extends JPanel implements ActionListener {
             player_guis[i] = new PlayerGUI();
             player_guis[i].setOpaque(false);
             player_guis[i].setBackground(Color.PINK);
-            player_guis[i].setForeground(Color.BLACK);
             player_guis[i].setBorder(null);
             player_guis[i].setBounds(
                 players[i].GetCoordNow().x, 
@@ -48,6 +47,12 @@ public class LayeredPane extends JPanel implements ActionListener {
         button.setBounds(0, 80, 60, 60);
         layeredPane.add(button, 0);
         add(layeredPane);
+        
+        player_guis[0].SetColor(Color.GREEN);
+        player_guis[1].SetColor(Color.RED);
+        player_guis[2].SetColor(Color.BLUE);
+        player_guis[3].SetColor(Color.GRAY);
+        
     }
     public void SetOriginFrame(JFrame frame){
         this.frame = frame;
@@ -55,12 +60,18 @@ public class LayeredPane extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e){
         int turn = Start.turn;
         Start.Test();
+        System.out.print(layeredPane.getComponentCountInLayer(0));
         layeredPane.remove(player_guis[turn]);
         
         player_guis[turn] = new PlayerGUI();
         player_guis[turn].setOpaque(false);
         player_guis[turn].setBackground(Color.PINK);
-        player_guis[turn].setForeground(Color.BLACK);
+
+        player_guis[0].SetColor(Color.GREEN);
+        player_guis[1].SetColor(Color.RED);
+        player_guis[2].SetColor(Color.BLUE);
+        player_guis[3].SetColor(Color.GRAY);
+
         player_guis[turn].setBorder(null);
         player_guis[turn].setBounds(players[turn].GetCoordNow().x, players[turn].GetCoordNow().y, 140, 140);
         
