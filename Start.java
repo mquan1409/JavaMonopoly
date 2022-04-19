@@ -31,7 +31,6 @@ public class Start {
             check=players[0].GetPosition()%40;
             if(players[0].GetPosition()==check)
             {
-                players[0].SetPosition(check);
             }
             else
             {
@@ -56,13 +55,13 @@ public class Start {
 
         //Row 1
         for(int i=1; i<11; i++)
-            players[0].GetCoords()[i] = new Coord(520 - (x+45*i+5), y+10+450);
+            players[3].GetCoords()[i] = new Coord(520 - (x+45*i+5), y+10+450);
         for(int i=1; i<11; i++)
             players[1].GetCoords()[i] = new Coord(520 - (x+45*i+5), y+450+15+10);
         for(int i=1; i<11; i++)
             players[2].GetCoords()[i] = new Coord(520 - (x+45*i+15+5), y+450+10);
         for(int i=1; i<11; i++)
-            players[3].GetCoords()[i] = new Coord(520 - (x+45*i+15+5), y+450+15+10);
+            players[0].GetCoords()[i] = new Coord(520 - (x+45*i+15+5), y+450+15+10);
 
         //Row 2
         for(int i=1; i<11; i++)
@@ -76,23 +75,23 @@ public class Start {
 
         //Row 3
         for(int i=1; i<11; i++)
-            players[0].GetCoords()[20 + i] = new Coord(x+45*i, y);
+            players[2].GetCoords()[20 + i] = new Coord(x+45*i, y);
         for(int i=1; i<11; i++)
-            players[1].GetCoords()[20 + i] = new Coord(x+45*i+15, y);
+            players[3].GetCoords()[20 + i] = new Coord(x+45*i+15, y);
         for(int i=1; i<11; i++)
-            players[2].GetCoords()[20 + i] = new Coord(x+45*i, y+15);
+            players[0].GetCoords()[20 + i] = new Coord(x+45*i, y+15);
         for(int i=1; i<11; i++)
-            players[3].GetCoords()[20 + i] = new Coord(x+45*i+15, y+15);
+            players[1].GetCoords()[20 + i] = new Coord(x+45*i+15, y+15);
 
         //Row 4
         for(int i=1; i<11; i++)
-            players[0].GetCoords()[30 + i] = new Coord(x+455, y+45*i);
+            players[2].GetCoords()[30 + i] = new Coord(x+455, y+45*i);
         for(int i=1; i<11; i++)
-            players[1].GetCoords()[30 + i] = new Coord(x+455+15, y+45*i);
+            players[3].GetCoords()[30 + i] = new Coord(x+455+15, y+45*i);
         for(int i=1; i<11; i++)
-            players[2].GetCoords()[30 + i] = new Coord(x+455, y+45*i+15);
+            players[0].GetCoords()[30 + i] = new Coord(x+455, y+45*i+15);
         for(int i=1; i<11; i++)
-            players[3].GetCoords()[30 + i] = new Coord(x+455+15, y+45*i+15);
+            players[1].GetCoords()[30 + i] = new Coord(x+455+15, y+45*i+15);
 
         players[0].GetCoords()[0] = players[0].GetCoords()[40];
         players[1].GetCoords()[0] = players[1].GetCoords()[40];
