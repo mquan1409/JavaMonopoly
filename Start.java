@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.util.Arrays;
 import java.awt.*;
-
+import java.util.Random;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,9 +15,30 @@ import javax.swing.text.LabelView;
 public class Start {
     private static int[] player_positions;
     private static Player[] players;
+    
 
     public static void Test(){
-        player_positions[0] += 2;
+        int check;          //check if the player passed Go
+        int di1, di2;
+        do{
+            Random random = new Random();
+            di1=random.nextInt(6)+1;
+            di2=random.nextInt(6)+1;
+            player_positions[0] += di1 + di2;
+            check=player_positions[0]%40;
+            if(player_positions[0]==check)
+            {
+                player_positions[0]=check;
+            }
+            else
+            {
+                int money;
+                money=players[0].GetMoneyOwned()+200;
+                players[0].SetMoneyOwned(money);
+                player_positions[0]=check;
+            }
+        }
+        while(di1==di2);
     }
     public static void main(String args[]){
         player_positions = new int[4];               //store the positions of player 1-4
