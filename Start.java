@@ -102,17 +102,12 @@ public class Start {
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800,800);
-        //Container content_pane = frame.getContentPane();
-        //frame.add(board);
         var label = new JLabel("Main Panel", SwingConstants.CENTER);
         label.setBackground(new Color(255,0,0));
-        //frame.add(label);
-        //frame.add(triangles);
         LayeredPane layeredPane = new LayeredPane(players);
         layeredPane.setOpaque(true);
         layeredPane.SetOriginFrame(frame);
         frame.setContentPane(layeredPane);
-        //frame.pack();
         frame.setVisible(true);
         BufferedReader input;
         try{

@@ -22,10 +22,7 @@ public class LayeredPane extends JPanel implements ActionListener {
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(800, 800));
         board = new Board();
-        //var label1 = new JLabel("Main Panel", SwingConstants.CENTER);
         var origin1 = new Point(0,0);
-        //label1.setVerticalAlignment(JLabel.TOP);
-        //label1.setHorizontalAlignment(JLabel.CENTER);
         board.setOpaque(true);
         board.setBackground(Color.BLUE);
         board.setForeground(Color.BLACK);
@@ -50,17 +47,12 @@ public class LayeredPane extends JPanel implements ActionListener {
         layeredPane.add(button, 0);
         add(layeredPane);
     }
-    // public void paintComponent(Graphics g){
-    //     board.paintComponent(g);
-    // }
-
     public void SetOriginFrame(JFrame frame){
         this.frame = frame;
     }
     public void actionPerformed(ActionEvent e){
         Start.Test();
         System.out.print(layeredPane.getComponentCountInLayer(0));
-        System.out.println("Clicked");
         layeredPane.remove(GUI_p1);
         
         GUI_p1 = new PlayerGUI();
