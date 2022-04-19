@@ -135,6 +135,6 @@ public class LayeredPane extends JPanel implements ActionListener {
         layeredPane.add(GUI_p1, 0);
         frame.repaint();
         frame.revalidate();
-        button.setEnabled(false);
+        //button.setEnabled(false);
     }
 }
