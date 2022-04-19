@@ -19,34 +19,85 @@ public class Start {
 
     public static void Test(){
         int check;          //check if the player passed Go
-        int di1, di2;
+        int di1 = 0, di2 = 0;
         do{
+            if((di1 == di2) && (di1 != 0))
+                System.out.println("Roll double!");
             Random random = new Random();
             di1=random.nextInt(6)+1;
             di2=random.nextInt(6)+1;
-            player_positions[0] += di1 + di2;
-            check=player_positions[0]%40;
-            if(player_positions[0]==check)
+            int current_position = players[0].GetPosition();
+            players[0].SetPosition(current_position += di1 + di2);
+            check=players[0].GetPosition()%40;
+            if(players[0].GetPosition()==check)
             {
-                player_positions[0]=check;
+                players[0].SetPosition(check);
             }
             else
             {
                 int money;
                 money=players[0].GetMoneyOwned()+200;
                 players[0].SetMoneyOwned(money);
-                player_positions[0]=check;
+                players[0].SetPosition(check);
             }
         }
         while(di1==di2);
     }
     public static void main(String args[]){
-        player_positions = new int[4];               //store the positions of player 1-4
-        players = new Player[4];
+        player_positions = new int[4];        //store the positions of player 0-3
+        players = new Player[4];              //there are 4 players (player 0-3)
+
         for(int i = 0; i < 4; i ++){
             players[i] = new Player();
             player_positions[i] = players[i].GetPosition();
         }
+        int x=24;
+        int y=30;
+
+        //Row 1
+        for(int i=1; i<11; i++)
+            players[0].GetCoords()[i] = new Coord(520 - (x+45*i+5), y+10+450);
+        for(int i=1; i<11; i++)
+            players[1].GetCoords()[i] = new Coord(520 - (x+45*i+5), y+450+15+10);
+        for(int i=1; i<11; i++)
+            players[2].GetCoords()[i] = new Coord(520 - (x+45*i+15+5), y+450+10);
+        for(int i=1; i<11; i++)
+            players[3].GetCoords()[i] = new Coord(520 - (x+45*i+15+5), y+450+15+10);
+
+        //Row 2
+        for(int i=1; i<11; i++)
+            players[0].GetCoords()[10 + i] = new Coord(x-5, 525 - (y+45*i));
+        for(int i=1; i<11; i++)
+            players[1].GetCoords()[10 + i] = new Coord(x+10, 525 - (y+45*i));
+        for(int i=1; i<11; i++)
+            players[2].GetCoords()[10 + i] = new Coord(x-5, 525 - (y+45*i+15));
+        for(int i=1; i<11; i++)
+            players[3].GetCoords()[10 + i] = new Coord(x+10, 525 - (y+45*i+15));
+
+        //Row 3
+        for(int i=1; i<11; i++)
+            players[0].GetCoords()[20 + i] = new Coord(x+45*i, y);
+        for(int i=1; i<11; i++)
+            players[1].GetCoords()[20 + i] = new Coord(x+45*i+15, y);
+        for(int i=1; i<11; i++)
+            players[2].GetCoords()[20 + i] = new Coord(x+45*i, y+15);
+        for(int i=1; i<11; i++)
+            players[3].GetCoords()[20 + i] = new Coord(x+45*i+15, y+15);
+
+        //Row 4
+        for(int i=1; i<11; i++)
+            players[0].GetCoords()[30 + i] = new Coord(x+455, y+45*i);
+        for(int i=1; i<11; i++)
+            players[1].GetCoords()[30 + i] = new Coord(x+455+15, y+45*i);
+        for(int i=1; i<11; i++)
+            players[2].GetCoords()[30 + i] = new Coord(x+455, y+45*i+15);
+        for(int i=1; i<11; i++)
+            players[3].GetCoords()[30 + i] = new Coord(x+455+15, y+45*i+15);
+
+        players[0].GetCoords()[0] = players[0].GetCoords()[40];
+        players[1].GetCoords()[0] = players[1].GetCoords()[40];
+        players[2].GetCoords()[0] = players[2].GetCoords()[40];
+        players[3].GetCoords()[0] = players[3].GetCoords()[40];
         JFrame frame = new JFrame("Start");
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +108,7 @@ public class Start {
         label.setBackground(new Color(255,0,0));
         //frame.add(label);
         //frame.add(triangles);
-        LayeredPane layeredPane = new LayeredPane(player_positions);
+        LayeredPane layeredPane = new LayeredPane(players);
         layeredPane.setOpaque(true);
         layeredPane.SetOriginFrame(frame);
         frame.setContentPane(layeredPane);

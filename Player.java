@@ -6,6 +6,13 @@ public class Player {
     private int[] deeds_owned;
     private String name;
     private int position;
+    private Coord[] coords;
+    public Coord[] GetCoords(){
+        return coords;
+    }
+    public Coord GetCoordNow(){
+        return coords[position];
+    }
     public int GetPosition(){
         return position;
     }
@@ -34,6 +41,7 @@ public class Player {
         money_owned = money;
     }
     public Player(){
+        coords = new Coord[41];
         deeds_owned = new int[28];
         money_owned = 1500;
         position = 0;
