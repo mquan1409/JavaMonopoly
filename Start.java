@@ -17,6 +17,9 @@ public class Start {
     private static Player[] players;
     public static int turn = 0;
     private static int double_counter = 0;
+    public static void CheckBuy(){
+        
+    }
     public static void NextTurn(){
         if(double_counter == 0)
             turn ++;
