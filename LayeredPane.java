@@ -14,10 +14,12 @@ public class LayeredPane extends JPanel implements ActionListener {
     private Board board;
     private JLayeredPane layeredPane;
     private JFrame frame;
-    private PlayerGUI GUI_p1;
+    private PlayerGUI[] player_guis;
     private JButton button;
     private Player[] players;
     public LayeredPane (Player[] players){
+        player_guis = new PlayerGUI[4];
+        
         this.players = players;
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(800, 800));
@@ -29,18 +31,18 @@ public class LayeredPane extends JPanel implements ActionListener {
         board.setBorder(null);
         board.setBounds(origin1.x, origin1.y, 1000, 1000);
         layeredPane.add(board, 1);
-
-        GUI_p1 = new PlayerGUI();
-        GUI_p1.setOpaque(false);
-        GUI_p1.setBackground(Color.PINK);
-        GUI_p1.setForeground(Color.BLACK);
-        GUI_p1.setBorder(null);
-        GUI_p1.setBounds(
-            players[0].GetCoordNow().x, 
-            players[0].GetCoordNow().y, 
-            140, 140);
-        layeredPane.add(GUI_p1, 0);
-
+        for(int i = 0; i < 4; i ++){
+            player_guis[i] = new PlayerGUI();
+            player_guis[i].setOpaque(false);
+            player_guis[i].setBackground(Color.PINK);
+            player_guis[i].setForeground(Color.BLACK);
+            player_guis[i].setBorder(null);
+            player_guis[i].setBounds(
+                players[i].GetCoordNow().x, 
+                players[i].GetCoordNow().y, 
+                140, 140);
+            layeredPane.add(player_guis[i], 0);
+        }
         button = new JButton("Click");
         button.addActionListener(this);
         button.setBounds(0, 80, 60, 60);
@@ -51,20 +53,21 @@ public class LayeredPane extends JPanel implements ActionListener {
         this.frame = frame;
     }
     public void actionPerformed(ActionEvent e){
+        int turn = Start.turn;
         Start.Test();
-        System.out.print(layeredPane.getComponentCountInLayer(0));
-        layeredPane.remove(GUI_p1);
+        layeredPane.remove(player_guis[turn]);
         
-        GUI_p1 = new PlayerGUI();
-        GUI_p1.setOpaque(false);
-        GUI_p1.setBackground(Color.PINK);
-        GUI_p1.setForeground(Color.BLACK);
-        GUI_p1.setBorder(null);
-        GUI_p1.setBounds(players[0].GetCoordNow().x, players[0].GetCoordNow().y, 140, 140);
+        player_guis[turn] = new PlayerGUI();
+        player_guis[turn].setOpaque(false);
+        player_guis[turn].setBackground(Color.PINK);
+        player_guis[turn].setForeground(Color.BLACK);
+        player_guis[turn].setBorder(null);
+        player_guis[turn].setBounds(players[turn].GetCoordNow().x, players[turn].GetCoordNow().y, 140, 140);
         
-        layeredPane.add(GUI_p1, 0);
+        layeredPane.add(player_guis[turn], 0);
         frame.repaint();
         frame.revalidate();
+        Start.NextTurn();
         //button.setEnabled(false);
     }
 }

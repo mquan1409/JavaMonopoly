@@ -12,39 +12,35 @@ import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.text.LabelView;
 
-public class Start {
+public class Start2 {
     private static int[] player_positions;
     private static Player[] players;
-    public static int turn = 0;
-    private static int double_counter = 0;
-    public static void NextTurn(){
-        if(double_counter == 0)
-            turn ++;
-        if(turn >= 4 || turn < 0)
-            turn = 0;
-    }
+    private static int activeplayer=0;
+
     public static void Test(){
         int check;          //check if the player passed Go
         int di1 = 0, di2 = 0;
-        Random random = new Random();
-        di1=random.nextInt(6)+1;
-        di2=random.nextInt(6)+1;
-        int current_position = players[turn].GetPosition();
-        players[turn].SetPosition(current_position += di1 + di2);
-        check=players[turn].GetPosition()%40;
-        if(players[turn].GetPosition()!=check)
-        {
-            int money;
-            money=players[turn].GetMoneyOwned()+200;
-            players[turn].SetMoneyOwned(money);
-            players[turn].SetPosition(check);
-        }
-        if((di1 == di2) && (di1 != 0)){
-            System.out.println("Roll double!");
-            double_counter ++;
-        }
+            if((di1 == di2) && (di1 != 0))
+                System.out.println("Roll double!");
+            Random random = new Random();
+            di1=random.nextInt(6)+1;
+            di2=random.nextInt(6)+1;
+            int current_position = players[0].GetPosition();
+            players[activeplayer].SetPosition(current_position += di1 + di2);
+            check=players[activeplayer].GetPosition()%40;
+            if(players[activeplayer].GetPosition()==check)
+            {
+            }
+            else
+            {
+                int money;
+                money=players[activeplayer].GetMoneyOwned()+200;
+                players[activeplayer].SetMoneyOwned(money);
+                players[activeplayer].SetPosition(check);
+            }
         if(di1 != di2)
-            double_counter = 0;
+            activeplayer++;
+        activeplayer=activeplayer%4;
     }
     public static void main(String args[]){
         player_positions = new int[4];        //store the positions of player 0-3
@@ -107,7 +103,7 @@ public class Start {
         frame.setSize(800,800);
         var label = new JLabel("Main Panel", SwingConstants.CENTER);
         label.setBackground(new Color(255,0,0));
-        LayeredPane layeredPane = new LayeredPane(players);
+        LayeredPane2 layeredPane = new LayeredPane2(players);
         layeredPane.setOpaque(true);
         layeredPane.SetOriginFrame(frame);
         frame.setContentPane(layeredPane);
@@ -170,6 +166,9 @@ public class Start {
                 lands[i].SetDeed(new Deed(name, cost, mortgage, rent));
             }
             
+        }
+        for(int i = 0; i < 40; i ++){
+            System.out.println(lands[i].GetDeed().GetName());
         }
     }
 }
