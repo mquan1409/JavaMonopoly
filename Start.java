@@ -17,8 +17,12 @@ public class Start {
     private static Player[] players;
     public static int turn = 0;
     private static int double_counter = 0;
-    public static void CheckBuy(){
-        
+    private static Land[] lands;
+    public static boolean CheckBuyable(){
+        if(lands[players[turn].GetPosition()].GetDeed() != null){
+            return true;
+        }
+        return false;
     }
     public static void NextTurn(){
         if(double_counter == 0)
@@ -123,7 +127,6 @@ public class Start {
             System.out.println(e.getMessage());
             return;
         }
-        Land[] lands;
         lands = new Land[40];
         Integer[] property_nums = {1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};
         for(int i = 0; i < 40; i ++){
@@ -142,12 +145,12 @@ public class Start {
             if(i%10 == 5){
                 lands[i].SetDeed(new RailRoad());
             }
-            else if(i == 10){
-                lands[i].SetDeed(new Deed("Just Visiting", true, false));
-            }
-            else if(i == 30){
-                lands[i].SetDeed(new Deed("Go To Jail", false, true));
-            }
+            // else if(i == 10){
+            //     lands[i].SetDeed(new Deed("Just Visiting", true, false));
+            // }
+            // else if(i == 30){
+            //     lands[i].SetDeed(new Deed("Go To Jail", false, true));
+            // }
             else if(i == 12){
                 lands[i].SetDeed(new Utility("Electric Company", 150, 75, 0));
             }

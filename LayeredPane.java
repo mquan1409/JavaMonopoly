@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.event.*;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,6 +16,7 @@ public class LayeredPane extends JPanel implements ActionListener {
     private PlayerGUI[] player_guis;
     private JButton button;
     private Player[] players;
+    private BuyDialog buy_dialog;
     public LayeredPane (Player[] players){
         player_guis = new PlayerGUI[4];
         
@@ -47,12 +47,12 @@ public class LayeredPane extends JPanel implements ActionListener {
         button.setBounds(0, 80, 60, 60);
         layeredPane.add(button, 0);
 
-        var buy_dialog = new BuyDialog();
+        buy_dialog = new BuyDialog();
         buy_dialog.setOpaque(true);
         buy_dialog.setBackground(Color.PINK);
         buy_dialog.setBorder(null);
-        buy_dialog.setBounds(150, 150, 150, 45);
-        //buy_dialog.setVisible(false);
+        buy_dialog.setBounds(250, 250, 150, 45);
+        buy_dialog.setVisible(false);
         layeredPane.add(buy_dialog, 0);
         add(layeredPane);
         
@@ -84,6 +84,9 @@ public class LayeredPane extends JPanel implements ActionListener {
         player_guis[turn].setBounds(players[turn].GetCoordNow().x, players[turn].GetCoordNow().y, 140, 140);
         
         layeredPane.add(player_guis[turn], 0);
+        if(Start.CheckBuyable()){
+            buy_dialog.setVisible(true);
+        }
         frame.repaint();
         frame.revalidate();
         Start.NextTurn();
