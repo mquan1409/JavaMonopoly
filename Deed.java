@@ -1,4 +1,6 @@
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Vector;
 import java.util.jar.Attributes.Name;
 
 import javax.management.ValueExp;
@@ -49,14 +51,19 @@ public class Deed {
     public void SetId(int value){
         Id = value;
     }
-    public Deed (String name, int cost, int mort, int rent)
+    public Deed GetInstance(){
+        return this;
+    }
+    public Deed (String name, int cost, int mort, int rent, int id)
     {
         Name = name;
+        Id = id;
         CostOfDeed = cost;
         Mortgage = mort;
         Rent = rent;
         Own = false;
         Owner = "N/A";
+        OwnerId = -1;
     }
     public Deed (String name, boolean is_visiting_jail, boolean is_jail){
         Name = name;

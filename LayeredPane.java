@@ -11,15 +11,32 @@ import java.awt.*;
 
 public class LayeredPane extends JPanel implements ActionListener {
     private Board board;
-    private JLayeredPane layeredPane;
+    private static JLayeredPane layeredPane;
     private JFrame frame;
     private PlayerGUI[] player_guis;
     private JButton button;
-    private Player[] players;
+    private static Player[] players;
     private BuyDialog buy_dialog;
+    private static JLabel[] money_labels;
+    public static void UpdateMoneyPanels(){
+        Coord[] money_label_positions = {new Coord(0,0), new Coord(600,0), new Coord(600,600), new Coord(0,600)};
+        for(int i = 0; i < 4; i ++){
+            layeredPane.remove(money_labels[i]);
+            money_labels[i] = new JLabel(
+                "Player ".concat(String.valueOf(i + 1)).concat(": ").concat(String.valueOf(players[i].GetMoneyOwned())));
+            money_labels[i].setOpaque(false);
+            money_labels[i].setBackground(Color.PINK);
+            money_labels[i].setBorder(null);
+            money_labels[i].setBounds(
+                money_label_positions[i].x, 
+                money_label_positions[i].y, 
+                100, 20);
+            layeredPane.add(money_labels[i], 0);
+        }
+    }
     public LayeredPane (Player[] players){
         player_guis = new PlayerGUI[4];
-        
+        money_labels = new JLabel[4];
         this.players = players;
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(800, 800));
@@ -42,6 +59,20 @@ public class LayeredPane extends JPanel implements ActionListener {
                 140, 140);
             layeredPane.add(player_guis[i], 0);
         }
+        Coord[] money_label_positions = {new Coord(0,0), new Coord(600,0), new Coord(600,600), new Coord(0,600)};
+        for(int i = 0; i < 4; i ++){
+            money_labels[i] = new JLabel(
+                "Player ".concat(String.valueOf(i + 1)).concat(": ").concat(String.valueOf(players[i].GetMoneyOwned())));
+            money_labels[i].setOpaque(false);
+            money_labels[i].setBackground(Color.PINK);
+            money_labels[i].setBorder(null);
+            money_labels[i].setBounds(
+                money_label_positions[i].x, 
+                money_label_positions[i].y, 
+                100, 20);
+            layeredPane.add(money_labels[i], 0);
+        }
+
         button = new JButton("Click");
         button.addActionListener(this);
         button.setBounds(0, 80, 60, 60);
@@ -84,12 +115,14 @@ public class LayeredPane extends JPanel implements ActionListener {
         player_guis[turn].setBounds(players[turn].GetCoordNow().x, players[turn].GetCoordNow().y, 140, 140);
         
         layeredPane.add(player_guis[turn], 0);
-        if(Start.CheckBuyable()){
+        boolean buyable = Start.CheckBuyable();
+        if(buyable){
             buy_dialog.setVisible(true);
         }
         frame.repaint();
         frame.revalidate();
-        Start.NextTurn();
+        if(!buyable)
+            Start.NextTurn();
         //button.setEnabled(false);
     }
 }

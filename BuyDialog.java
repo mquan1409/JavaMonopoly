@@ -49,7 +49,13 @@ public class BuyDialog extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println(e.getActionCommand());
-        if(e.getActionCommand() == "nope")
+        if(e.getActionCommand() == "nope"){
             setVisible(false);
+            Start.NextTurn();
+        }
+        if(e.getActionCommand() == "buy"){
+            Start.Buy();
+            setVisible(false);
+        }
     }
 }

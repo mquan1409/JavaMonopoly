@@ -1,9 +1,11 @@
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Vector;
 
 public class Player {
     private int money_owned;
     private int Id;
-    private int[] deeds_owned;
+    private ArrayList<Integer> deeds_owned;
     private String name;
     private int position;
     private Coord[] coords;
@@ -31,7 +33,7 @@ public class Player {
     public void SetId(int value){
         Id = value;
     }
-    public int[] GetDeedsOwned(){
+    public ArrayList<Integer> GetDeedsOwned(){
         return deeds_owned;
     }
     public int GetMoneyOwned(){
@@ -40,9 +42,17 @@ public class Player {
     public void SetMoneyOwned(int money){
         money_owned = money;
     }
-    public Player(){
+    public void Buy(int deed_id, int cost, Deed deed_bought){
+        deeds_owned.add(deed_id);
+        money_owned -= cost;
+        deed_bought.SetOwnerId(Id);
+        LayeredPane.UpdateMoneyPanels();
+        Start.NextTurn();
+    }
+    public Player(int id){
+        Id = id;
         coords = new Coord[41];
-        deeds_owned = new int[28];
+        deeds_owned = new ArrayList<Integer>();
         money_owned = 1500;
         position = 0;
     }

@@ -16,9 +16,9 @@ public class Property extends Deed{
     boolean Hotel;
 
     Property(String name, int cost, int mort, int rent, int houseCost,
-               int r1, int r2, int r3, int r4, int rh, int hotelCost)
+               int r1, int r2, int r3, int r4, int rh, int hotelCost, int id)
     {
-        super(name, cost, mort, rent);
+        super(name, cost, mort, rent, id);
         Rent0 = GetRent(); Rent1 = r1; Rent2 = r2; Rent3 = r3;Rent4 = r4;RentH = rh;
         NumHouses = 0;
         CostOfHouse = houseCost;

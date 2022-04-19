@@ -18,6 +18,15 @@ public class Start {
     public static int turn = 0;
     private static int double_counter = 0;
     private static Land[] lands;
+    public static void Buy(){
+        Deed deed = lands[players[turn].GetPosition()].GetDeed();
+        if(deed != null){
+            players[turn].Buy(
+                deed.GetId(), 
+                deed.GetCostOfDeed(),
+                deed.GetInstance());
+        }
+    }
     public static boolean CheckBuyable(){
         if(lands[players[turn].GetPosition()].GetDeed() != null){
             return true;
@@ -58,7 +67,7 @@ public class Start {
         players = new Player[4];              //there are 4 players (player 0-3)
 
         for(int i = 0; i < 4; i ++){
-            players[i] = new Player();
+            players[i] = new Player(i);
             player_positions[i] = players[i].GetPosition();
         }
         int x=24;
@@ -143,7 +152,7 @@ public class Start {
             
             lands[i] = new Land();
             if(i%10 == 5){
-                lands[i].SetDeed(new RailRoad());
+                lands[i].SetDeed(new RailRoad("Railroad", 200, 0, 0, i));
             }
             // else if(i == 10){
             //     lands[i].SetDeed(new Deed("Just Visiting", true, false));
@@ -152,10 +161,10 @@ public class Start {
             //     lands[i].SetDeed(new Deed("Go To Jail", false, true));
             // }
             else if(i == 12){
-                lands[i].SetDeed(new Utility("Electric Company", 150, 75, 0));
+                lands[i].SetDeed(new Utility("Electric Company", 150, 75, 0, i));
             }
             else if(i == 28){
-                lands[i].SetDeed(new Utility("Water Works", 150, 75, 0));
+                lands[i].SetDeed(new Utility("Water Works", 150, 75, 0, i));
             }
             else if(Arrays.asList(property_nums).contains(i)){
                 try{
@@ -173,7 +182,7 @@ public class Start {
                 catch(Exception e){
                     System.out.println(e.getMessage());
                 }
-                lands[i].SetDeed(new Deed(name, cost, mortgage, rent));
+                lands[i].SetDeed(new Deed(name, cost, mortgage, rent, i));
             }
             
         }
