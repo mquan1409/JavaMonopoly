@@ -5,7 +5,7 @@ import java.util.Vector;
 public class Player {
     private int money_owned;
     private int Id;
-    private ArrayList<Integer> deeds_owned;
+    private ArrayList<Integer> id_deeds_owned;
     private String name;
     private int position;
     private Coord[] coords;
@@ -34,7 +34,7 @@ public class Player {
         Id = value;
     }
     public ArrayList<Integer> GetDeedsOwned(){
-        return deeds_owned;
+        return id_deeds_owned;
     }
     public int GetMoneyOwned(){
         return money_owned;
@@ -43,16 +43,16 @@ public class Player {
         money_owned = money;
     }
     public void Buy(int deed_id, int cost, Deed deed_bought){
-        deeds_owned.add(deed_id);
+        id_deeds_owned.add(deed_id);
         money_owned -= cost;
         deed_bought.SetOwnerId(Id);
-        LayeredPane.UpdateMoneyPanels();
+        LayeredPane.UpdateDataPanels();
         Start.NextTurn();
     }
     public Player(int id){
         Id = id;
         coords = new Coord[41];
-        deeds_owned = new ArrayList<Integer>();
+        id_deeds_owned = new ArrayList<Integer>();
         money_owned = 1500;
         position = 0;
     }

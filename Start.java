@@ -17,7 +17,7 @@ public class Start {
     private static Player[] players;
     public static int turn = 0;
     private static int double_counter = 0;
-    private static Land[] lands;
+    public static Land[] lands;
     public static void Buy(){
         Deed deed = lands[players[turn].GetPosition()].GetDeed();
         if(deed != null){

@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,13 +14,14 @@ import java.awt.*;
 public class LayeredPane extends JPanel implements ActionListener {
     private Board board;
     private static JLayeredPane layeredPane;
-    private JFrame frame;
+    private static JFrame frame;
     private PlayerGUI[] player_guis;
     private JButton button;
     private static Player[] players;
     private BuyDialog buy_dialog;
     private static JLabel[] money_labels;
-    public static void UpdateMoneyPanels(){
+    private static PropertyContainerGUI[] property_containers;
+    public static void UpdateDataPanels(){
         Coord[] money_label_positions = {new Coord(0,0), new Coord(600,0), new Coord(600,600), new Coord(0,600)};
         for(int i = 0; i < 4; i ++){
             layeredPane.remove(money_labels[i]);
@@ -33,10 +36,29 @@ public class LayeredPane extends JPanel implements ActionListener {
                 100, 20);
             layeredPane.add(money_labels[i], 0);
         }
+        for(int i = 0; i < 4; i ++){
+            layeredPane.remove(property_containers[i]);
+            property_containers[i] = new PropertyContainerGUI();
+            ArrayList<Integer> id_deeds_owned = players[i].GetDeedsOwned();
+            for(int j = 0; j < id_deeds_owned.size(); j ++){
+                property_containers[i].AddProperty(Start.lands[id_deeds_owned.get(j)].GetDeed());           
+            }
+            property_containers[i].setOpaque(false);
+            property_containers[i].setBackground(Color.PINK);
+            property_containers[i].setBorder(null);
+            property_containers[i].setBounds(
+                money_label_positions[i].x, 
+                money_label_positions[i].y + 25, 
+                150, 200);
+            layeredPane.add(property_containers[i], 0);
+        }
+        frame.repaint();
+        frame.revalidate();
     }
     public LayeredPane (Player[] players){
         player_guis = new PlayerGUI[4];
         money_labels = new JLabel[4];
+        property_containers = new PropertyContainerGUI[4];
         this.players = players;
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(800, 800));
@@ -72,10 +94,21 @@ public class LayeredPane extends JPanel implements ActionListener {
                 100, 20);
             layeredPane.add(money_labels[i], 0);
         }
+        for(int i = 0; i < 4; i ++){
+            property_containers[i] = new PropertyContainerGUI();
+            property_containers[i].setOpaque(false);
+            property_containers[i].setBackground(Color.PINK);
+            property_containers[i].setBorder(null);
+            property_containers[i].setBounds(
+                money_label_positions[i].x, 
+                money_label_positions[i].y + 25, 
+                150, 200);
+            layeredPane.add(property_containers[i], 0);
+        }
 
         button = new JButton("Click");
         button.addActionListener(this);
-        button.setBounds(0, 80, 60, 60);
+        button.setBounds(200, 200, 80, 25);
         layeredPane.add(button, 0);
 
         buy_dialog = new BuyDialog();
