@@ -15,7 +15,7 @@ public class LayeredPane extends JPanel implements ActionListener {
     private Board board;
     private static JLayeredPane layeredPane;
     private static JFrame frame;
-    private PlayerGUI[] player_guis;
+    private static PlayerGUI[] player_guis;
     private static JButton roll_button;
     private static Player[] players;
     private BuyDialog buy_dialog;
@@ -38,13 +38,12 @@ public class LayeredPane extends JPanel implements ActionListener {
         }
         for(int i = 0; i < 4; i ++){
             layeredPane.remove(property_containers[i]);
-            property_containers[i] = new PropertyContainerGUI();
+            property_containers[i] = new PropertyContainerGUI(player_guis[i].GetColor());
             ArrayList<Integer> id_deeds_owned = players[i].GetDeedsOwned();
             for(int j = 0; j < id_deeds_owned.size(); j ++){
                 property_containers[i].AddProperty(Start.lands[id_deeds_owned.get(j)].GetDeed());           
             }
             property_containers[i].setOpaque(false);
-            property_containers[i].setBackground(Color.PINK);
             property_containers[i].setBorder(null);
             property_containers[i].setBounds(
                 money_label_positions[i].x, 
@@ -82,6 +81,10 @@ public class LayeredPane extends JPanel implements ActionListener {
                 140, 140);
             layeredPane.add(player_guis[i], 0);
         }
+        player_guis[0].SetColor(Color.GREEN);
+        player_guis[1].SetColor(Color.RED);
+        player_guis[2].SetColor(Color.BLUE);
+        player_guis[3].SetColor(Color.GRAY);
         Coord[] money_label_positions = {new Coord(0,0), new Coord(600,0), new Coord(600,600), new Coord(0,600)};
         for(int i = 0; i < 4; i ++){
             money_labels[i] = new JLabel(
@@ -96,9 +99,8 @@ public class LayeredPane extends JPanel implements ActionListener {
             layeredPane.add(money_labels[i], 0);
         }
         for(int i = 0; i < 4; i ++){
-            property_containers[i] = new PropertyContainerGUI();
+            property_containers[i] = new PropertyContainerGUI(player_guis[i].GetColor());
             property_containers[i].setOpaque(false);
-            property_containers[i].setBackground(Color.PINK);
             property_containers[i].setBorder(null);
             property_containers[i].setBounds(
                 money_label_positions[i].x, 
@@ -120,12 +122,6 @@ public class LayeredPane extends JPanel implements ActionListener {
         buy_dialog.setVisible(false);
         layeredPane.add(buy_dialog, 0);
         add(layeredPane);
-        
-        player_guis[0].SetColor(Color.GREEN);
-        player_guis[1].SetColor(Color.RED);
-        player_guis[2].SetColor(Color.BLUE);
-        player_guis[3].SetColor(Color.GRAY);
-        
     }
     public void SetOriginFrame(JFrame frame){
         this.frame = frame;
@@ -133,7 +129,7 @@ public class LayeredPane extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e){
         int turn = Start.turn;
         Start.Play();
-        System.out.print(layeredPane.getComponentCountInLayer(0));
+        // System.out.print(layeredPane.getComponentCountInLayer(0));
         layeredPane.remove(player_guis[turn]);
         
         player_guis[turn] = new PlayerGUI();
@@ -153,6 +149,9 @@ public class LayeredPane extends JPanel implements ActionListener {
         if(buyable){
             buy_dialog.setVisible(true);
             roll_button.setEnabled(false);
+        }
+        if(Start.Rentable()){
+            Start.Rent();
         }
         frame.repaint();
         frame.revalidate();

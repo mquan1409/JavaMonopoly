@@ -13,7 +13,7 @@ import javax.management.ValueExp;
  * CostOfDeed = Price to buy
  * Mortgage = money player gets of mortgaging the property
  * Rent = base rent
- * Own = is the property owned by a player
+ * IsOwned = is the property owned by a player
  */
 public class Deed {
     private String Name;
@@ -21,9 +21,12 @@ public class Deed {
     private int OwnerId;
     private int Id;
     private int CostOfDeed, Mortgage, Rent;
-    private boolean Own;
+    private boolean isOwned;
     private boolean IsVisitingJail = false;
     private boolean IsJail = false;
+    public boolean IsOwned(){
+        return isOwned;
+    }
     public String GetName(){
         return Name;
     }
@@ -35,6 +38,7 @@ public class Deed {
     }
     public void SetOwnerId(int value){
         OwnerId = value;
+        isOwned = true;
     }
     public int GetCostOfDeed(){
         return CostOfDeed;
@@ -61,7 +65,7 @@ public class Deed {
         CostOfDeed = cost;
         Mortgage = mort;
         Rent = rent;
-        Own = false;
+        isOwned = false;
         Owner = "N/A";
         OwnerId = -1;
     }
@@ -75,7 +79,7 @@ public class Deed {
         CostOfDeed = 0;
         Mortgage = 0;
         Rent = 0;
-        Own = false;
+        isOwned = false;
         Owner = "N/A";
     }
 }

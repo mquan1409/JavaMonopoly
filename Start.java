@@ -28,10 +28,25 @@ public class Start {
         }
     }
     public static boolean CheckBuyable(){
-        if(lands[players[turn].GetPosition()].GetDeed() != null){
+        if((lands[players[turn].GetPosition()].GetDeed() != null)
+            && (!lands[players[turn].GetPosition()].GetDeed().IsOwned())){
             return true;
         }
         return false;
+    }
+    public static void Rent(){
+        Deed deed = lands[players[turn].GetPosition()].GetDeed();
+        int rent_cost = deed.GetRent();
+        players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - rent_cost);
+        players[deed.GetOwnerId()].SetMoneyOwned(players[deed.GetOwnerId()].GetMoneyOwned() + rent_cost);
+        System.out.println(String.valueOf(turn).concat(" rent ").concat(String.valueOf(deed.GetOwnerId())).concat(" with ").concat(String.valueOf(rent_cost)));
+    }
+    public static boolean Rentable(){
+        Deed deed = lands[players[turn].GetPosition()].GetDeed();
+        if(deed != null)
+            return deed.IsOwned();
+        else
+            return false;
     }
     public static void NextTurn(){
         if(double_counter == 0)

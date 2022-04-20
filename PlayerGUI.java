@@ -7,6 +7,9 @@ public class PlayerGUI extends JPanel {
     public void SetColor(Color color){
         this.color = color;
     }
+    public Color GetColor(){
+        return color;
+    }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.setColor(color);

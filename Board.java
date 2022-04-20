@@ -126,7 +126,6 @@ public class Board extends JComponent
         int y=30;
 
         Coord player_positions = new Coord(1, 2);
-        System.out.println(player_positions);
         //Player Positions Row 1
         for(int i=1; i<11; i++)
             g.fillOval(x+45*i+5, y+10+450, 10, 10 );

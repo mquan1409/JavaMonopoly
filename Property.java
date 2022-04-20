@@ -13,16 +13,24 @@ public class Property extends Deed{
      */
     private int CostOfHouse; 
     private int CostOfHotel;
-    private int[] Rent;
+    private int[] RentProp;
     private int NumHouses;
     boolean Hotel;
 
+    public int GetNumHouses(){
+        return NumHouses;
+    }
+
+    @Override
+    public int GetRent(){
+        return RentProp[NumHouses];
+    }
     Property(String name, int cost, int mort, int rent, int houseCost,
                int r1, int r2, int r3, int r4, int rh, int hotelCost, int id)
     {
         super(name, cost, mort, rent, id);
-        Rent = new int[6];
-        Rent[0] = GetRent(); Rent[1] = r1; Rent[2] = r2; Rent[3] = r3; Rent[4] = r4; Rent[5] = rh;
+        RentProp = new int[6];
+        RentProp[0] = rent; RentProp[1] = r1; RentProp[2] = r2; RentProp[3] = r3; RentProp[4] = r4; RentProp[5] = rh;
         NumHouses = 0;
         CostOfHouse = houseCost;
         hotelCost = CostOfHotel;
