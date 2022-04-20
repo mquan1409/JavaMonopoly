@@ -39,7 +39,7 @@ public class Start {
         if(turn >= 4 || turn < 0)
             turn = 0;
     }
-    public static void Test(){
+    public static void Play(){
         int check;          //check if the player passed Go
         int di1 = 0, di2 = 0;
         Random random = new Random();
@@ -62,6 +62,236 @@ public class Start {
         if(di1 != di2)
             double_counter = 0;
     }
+
+
+    public static void chestcard()
+    {
+        Random random = new Random();
+        int money;
+        int card = random.nextInt(14);
+        switch(card)
+        {
+            case 0:
+            System.out.println("Advance to go and collect $200");
+            players[turn].SetPosition(0);
+            money=players[turn].GetMoneyOwned()+200;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+            case 1:
+            System.out.println("Bank Error in your favor. Collect $200");
+            money=players[turn].GetMoneyOwned()+200;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+            case 2:
+            System.out.println("Doctor's fee. Pay $50");
+            money=players[turn].GetMoneyOwned()-50;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+            case 3:
+            System.out.println("From sale of stock you get $50");
+            money=players[turn].GetMoneyOwned()+50;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+
+            case 4:
+            System.out.println("Go to Jail. Go directly to jail, do not pass Go, do not collect $200");
+            players[turn].SetPosition(10);
+            break;
+
+            case 5:
+            System.out.println("Holiday fund matures. Receive $100");
+            money=players[turn].GetMoneyOwned()+100;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+
+            case 6:
+            System.out.println("Income tax refund. Collect $20");
+            money=players[turn].GetMoneyOwned()+20;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+
+            case 7:
+            System.out.println("It is your birthday. Collect $10 from every player");
+            for(int x=0; x<4; x++)
+            {
+                money=players[turn].GetMoneyOwned()+10;
+                players[turn].SetMoneyOwned(money);
+            }
+            int i=turn+1;
+            for(int x=0; x<4; x++, i++)
+            {
+                i=i%4;
+                money=players[i].GetMoneyOwned()-10;
+                players[i].SetMoneyOwned(money);
+            }
+            break;
+
+
+            case 8:
+            System.out.println("Life insurance matures. Collect $100");
+            money=players[turn].GetMoneyOwned()+100;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+
+            case 9:
+            System.out.println("Pay hospital fees of $100");
+            money=players[turn].GetMoneyOwned()-100;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+
+
+            case 10:
+            System.out.println("Pay school fees of $50");
+            money=players[turn].GetMoneyOwned()-50;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+
+            case 11:
+            System.out.println("Receive $25 consultancy fee");
+            money=players[turn].GetMoneyOwned()+25;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+
+            case 12:
+            System.out.println("You have won second prize in a beauty contest. Collect $10");
+            money=players[turn].GetMoneyOwned()+10;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+
+            case 13:
+            System.out.println("You inherit $100");
+            money=players[turn].GetMoneyOwned()+100;
+            players[turn].SetMoneyOwned(money);
+            break;
+        }
+
+    }
+
+
+    public static void chancecard()
+    {
+        Random random = new Random();
+        int money;
+        int card = random.nextInt(10);
+        switch(card)
+        {
+            case 0:
+            System.out.println("Advance to go and collect $200");
+            players[turn].SetPosition(0);
+            money=players[turn].GetMoneyOwned()+200;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+            
+            case 1:
+            System.out.println("Advance to Illinois Avenue. If you pass Go, collect $200");
+            if(players[turn].GetPosition()>24)
+            {
+                money=players[turn].GetMoneyOwned()+200;
+                players[turn].SetMoneyOwned(money);
+            }
+            players[turn].SetPosition(24);
+            break;
+
+            case 2:
+            System.out.println("Advance to St. Charles Place. If you pass Go, collect $200");
+            if(players[turn].GetPosition()>11)
+            {
+                money=players[turn].GetMoneyOwned()+200;
+                players[turn].SetMoneyOwned(money);
+            }
+            players[turn].SetPosition(11);
+            break;
+
+
+            case 3:
+            System.out.println("Take a trip to Reading Railroad. If you pass Go, collect $200");
+            if(players[turn].GetPosition()>5)
+            {
+                money=players[turn].GetMoneyOwned()+200;
+                players[turn].SetMoneyOwned(money);
+            }
+            players[turn].SetPosition(5);
+            break;
+
+
+            case 4:
+            System.out.println("Bank pays you dividend of $50");
+            money=players[turn].GetMoneyOwned()+50;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+            case 5:
+            System.out.println("Go Back 3 Spaces");
+            money=players[turn].GetPosition();
+            money=money-3;
+            if(money<0)
+                money+=40;
+            players[turn].SetPosition(money);
+            break;
+
+
+            case 6:
+            System.out.println("Go to Jail. Go directly to Jail, do not pass Go, do not collect $200");
+            players[turn].SetPosition(10);
+            break;
+
+            case 7:
+            System.out.println("Speeding fine $15");
+            money=players[turn].GetMoneyOwned()-15;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+
+            case 8:
+            System.out.println("You have been elected Chairman of the Board. Pay each player $50");
+            for(int i=0; i<4; i++)
+            {
+                money=players[turn].GetMoneyOwned()-50;
+                players[turn].SetMoneyOwned(money);
+            }
+            int x=turn+1;
+            for(int i=0; i<4; i++, x++)
+            {
+                x=x%4;
+                money=players[x].GetMoneyOwned()+50;
+                players[x].SetMoneyOwned(money);
+            }
+            break;
+
+
+
+            case 9:
+            System.out.println("Your building loan matures. Collect $150");
+            money=players[turn].GetMoneyOwned()+150;
+            players[turn].SetMoneyOwned(money);
+            break;
+
+
+
+
+
+        }
+
+    }
+
+
+
+
+
+
+
     public static void main(String args[]){
         player_positions = new int[4];        //store the positions of player 0-3
         players = new Player[4];              //there are 4 players (player 0-3)

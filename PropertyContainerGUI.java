@@ -15,19 +15,20 @@ public class PropertyContainerGUI extends JPanel {
         message.setOpaque(true);
         message.setBorder(null);
         message.setBackground(Color.PINK);
-        message.setBounds(0, 0 + offset_y_axis, 150, 20);
+        message.setBounds(0, 0 + offset_y_axis, 200, 20);
+        offset_y_axis += 25;
         layeredPane.add(message,0);
     }
     public PropertyContainerGUI(){
         layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(150, 200));
+        layeredPane.setPreferredSize(new Dimension(200, 200));
         var message = new JLabel("Properties: ");
         message.setVerticalAlignment(SwingConstants.TOP);
         message.setHorizontalAlignment(SwingConstants.LEFT);
         message.setOpaque(true);
         message.setBorder(null);
         message.setBackground(Color.PINK);
-        message.setBounds(0, 0, 150, 20);
+        message.setBounds(0, 0, 200, 20);
         layeredPane.add(message,0);
         add(layeredPane);
     }

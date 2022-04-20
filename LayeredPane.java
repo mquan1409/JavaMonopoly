@@ -49,7 +49,7 @@ public class LayeredPane extends JPanel implements ActionListener {
             property_containers[i].setBounds(
                 money_label_positions[i].x, 
                 money_label_positions[i].y + 25, 
-                150, 200);
+                200, 200);
             layeredPane.add(property_containers[i], 0);
         }
         frame.repaint();
@@ -102,7 +102,7 @@ public class LayeredPane extends JPanel implements ActionListener {
             property_containers[i].setBounds(
                 money_label_positions[i].x, 
                 money_label_positions[i].y + 25, 
-                150, 200);
+                200, 200);
             layeredPane.add(property_containers[i], 0);
         }
 
@@ -131,7 +131,7 @@ public class LayeredPane extends JPanel implements ActionListener {
     }
     public void actionPerformed(ActionEvent e){
         int turn = Start.turn;
-        Start.Test();
+        Start.Play();
         System.out.print(layeredPane.getComponentCountInLayer(0));
         layeredPane.remove(player_guis[turn]);
         
