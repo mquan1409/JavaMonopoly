@@ -204,45 +204,45 @@ public class Board extends JComponent
         int y=30;
 
         Coord player_positions = new Coord(1, 2);
-        //Player Positions Row 1
-        for(int i=1; i<11; i++)
-            g.fillOval(x+45*i+5, y+10+450, 10, 10 );
-        for(int i=1; i<11; i++)
-            g.fillOval(x+45*i+5, y+450+15+10, 10, 10 );
-        for(int i=1; i<11; i++)
-            g.fillOval(x+45*i+15+5, y+450+10, 10, 10 );
-        for(int i=1; i<11; i++)
-            g.fillOval(x+45*i+15+5, y+450+15+10, 10, 10 );
+    //     //Player Positions Row 1
+    //     for(int i=1; i<11; i++)
+    //         g.fillOval(x+45*i+5, y+10+450, 10, 10 );
+    //     for(int i=1; i<11; i++)
+    //         g.fillOval(x+45*i+5, y+450+15+10, 10, 10 );
+    //     for(int i=1; i<11; i++)
+    //         g.fillOval(x+45*i+15+5, y+450+10, 10, 10 );
+    //     for(int i=1; i<11; i++)
+    //         g.fillOval(x+45*i+15+5, y+450+15+10, 10, 10 );
 
-        //Player Positions Row 2
-        for(int i=1; i<11; i++)
-            g.fillOval(x-5, y+45*i, 10, 10 );
-        for(int i=1; i<11; i++)
-            g.fillOval(x+10, y+45*i, 10, 10 );
-        for(int i=1; i<11; i++)
-            g.fillOval(x-5, y+45*i+15, 10, 10 );
-        for(int i=1; i<11; i++)
-            g.fillOval(x+10, y+45*i+15, 10, 10 );
+    //     //Player Positions Row 2
+    //     for(int i=1; i<11; i++)
+    //         g.fillOval(x-5, y+45*i, 10, 10 );
+    //     for(int i=1; i<11; i++)
+    //         g.fillOval(x+10, y+45*i, 10, 10 );
+    //     for(int i=1; i<11; i++)
+    //         g.fillOval(x-5, y+45*i+15, 10, 10 );
+    //     for(int i=1; i<11; i++)
+    //         g.fillOval(x+10, y+45*i+15, 10, 10 );
 
-        //Player Positions Row 3
-        for(int i=0; i<11; i++)
-            g.fillOval(x+45*i, y, 10, 10 );
-        for(int i=0; i<11; i++)
-            g.fillOval(x+45*i+15, y, 10, 10 );
-        for(int i=0; i<11; i++)
-            g.fillOval(x+45*i, y+15, 10, 10 );
-        for(int i=0; i<11; i++)
-            g.fillOval(x+45*i+15, y+15, 10, 10 );
+    //     //Player Positions Row 3
+    //     for(int i=0; i<11; i++)
+    //         g.fillOval(x+45*i, y, 10, 10 );
+    //     for(int i=0; i<11; i++)
+    //         g.fillOval(x+45*i+15, y, 10, 10 );
+    //     for(int i=0; i<11; i++)
+    //         g.fillOval(x+45*i, y+15, 10, 10 );
+    //     for(int i=0; i<11; i++)
+    //         g.fillOval(x+45*i+15, y+15, 10, 10 );
         
-        //Player Positions Row 4
-        for(int i=1; i<10; i++)
-            g.fillOval(x+455, y+45*i, 10, 10 );
-        for(int i=1; i<10; i++)
-            g.fillOval(x+455+15, y+45*i, 10, 10 );
-        for(int i=1; i<10; i++)
-            g.fillOval(x+455, y+45*i+15, 10, 10 );
-        for(int i=1; i<10; i++)
-            g.fillOval(x+455+15, y+45*i+15, 10, 10 );
+    //     //Player Positions Row 4
+    //     for(int i=1; i<10; i++)
+    //         g.fillOval(x+455, y+45*i, 10, 10 );
+    //     for(int i=1; i<10; i++)
+    //         g.fillOval(x+455+15, y+45*i, 10, 10 );
+    //     for(int i=1; i<10; i++)
+    //         g.fillOval(x+455, y+45*i+15, 10, 10 );
+    //     for(int i=1; i<10; i++)
+    //         g.fillOval(x+455+15, y+45*i+15, 10, 10 );
     }
 
 
