@@ -144,6 +144,8 @@ public class Start {
             JOptionPane.showMessageDialog(null, message);
             System.out.println(String.valueOf(di1 + di2));
             int current_position = players[turn].GetPosition();
+            // di1 = 1;
+            // di2 = 3;
             // var test = 15;
             players[turn].SetPosition(current_position += di1 + di2);
             check=players[turn].GetPosition()%40;
@@ -177,7 +179,14 @@ public class Start {
                 players[turn].Buy(lands[property].GetDeed().GetId(), lands[property].GetDeed().GetCostOfDeed(), lands[property].GetDeed().GetInstance());
                 LayeredPane.UpdateDataPanels();
             }
-            
+            if(players[turn].GetPosition() == 4){
+                JOptionPane.showMessageDialog(null, "Income Tax: 200");
+                players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 200);
+            }
+            if(players[turn].GetPosition() == 38){
+                JOptionPane.showMessageDialog(null, "Income Tax: 75");
+                players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 75);
+            }
         }
     }
     public static void main(String args[]){
@@ -655,7 +664,7 @@ public class Start {
             players[turn].SetMoneyOwned(money);
             break;
         }
-        JOptionPane.showMessageDialog(null, "Community chest card: ".concat(message));
+        JOptionPane.showMessageDialog(null, "Chance card: ".concat(message));
         LayeredPane.UpdateDataPanels();
     }
 }
