@@ -22,7 +22,7 @@ public class LayeredPane extends JPanel implements ActionListener {
     private static JLabel[] money_labels;
     private static PropertyContainerGUI[] property_containers;
     public static void UpdateDataPanels(){
-        Coord[] money_label_positions = {new Coord(0,0), new Coord(600,0), new Coord(600,600), new Coord(0,600)};
+        Coord[] money_label_positions = {new Coord(0,0), new Coord(750,0), new Coord(750,600), new Coord(0,600)};
         for(int i = 0; i < 4; i ++){
             layeredPane.remove(money_labels[i]);
             money_labels[i] = new JLabel(
@@ -61,14 +61,13 @@ public class LayeredPane extends JPanel implements ActionListener {
         property_containers = new PropertyContainerGUI[4];
         this.players = players;
         layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(800, 800));
+        layeredPane.setPreferredSize(new Dimension(1000, 1000));
         board = new Board();
-        var origin1 = new Point(0,0);
         board.setOpaque(true);
         board.setBackground(Color.BLUE);
         board.setForeground(Color.BLACK);
         board.setBorder(null);
-        board.setBounds(origin1.x, origin1.y, 1000, 1000);
+        board.setBounds(200, 100, 1000, 1000);
         layeredPane.add(board, 1);
         for(int i = 0; i < 4; i ++){
             player_guis[i] = new PlayerGUI();
@@ -85,7 +84,7 @@ public class LayeredPane extends JPanel implements ActionListener {
         player_guis[1].SetColor(Color.RED);
         player_guis[2].SetColor(Color.BLUE);
         player_guis[3].SetColor(Color.GRAY);
-        Coord[] money_label_positions = {new Coord(0,0), new Coord(600,0), new Coord(600,600), new Coord(0,600)};
+        Coord[] money_label_positions = {new Coord(0,0), new Coord(750,0), new Coord(750,600), new Coord(0,600)};
         for(int i = 0; i < 4; i ++){
             money_labels[i] = new JLabel(
                 "Player ".concat(String.valueOf(i + 1)).concat(": ").concat(String.valueOf(players[i].GetMoneyOwned())));
@@ -111,7 +110,7 @@ public class LayeredPane extends JPanel implements ActionListener {
 
         roll_button = new JButton("Roll");
         roll_button.addActionListener(this);
-        roll_button.setBounds(200, 200, 80, 25);
+        roll_button.setBounds(300, 300, 80, 25);
         layeredPane.add(roll_button, 0);
 
         buy_dialog = new BuyDialog();

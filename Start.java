@@ -60,6 +60,7 @@ public class Start {
         Random random = new Random();
         di1=random.nextInt(6)+1;
         di2=random.nextInt(6)+1;
+        System.out.println(String.valueOf(di1 + di2));
         int current_position = players[turn].GetPosition();
         players[turn].SetPosition(current_position += di1 + di2);
         check=players[turn].GetPosition()%40;
@@ -359,6 +360,15 @@ public class Start {
         for(int i=1; i<11; i++)
             players[1].GetCoords()[30 + i] = new Coord(x+455+15, y+45*i+15);
 
+        int offset_x = 201;
+        int offset_y = 101;
+
+        for(int i = 1; i < 41; i ++){
+            for(int j = 0; j < 4; j ++){
+                players[j].GetCoords()[i].x += offset_x;
+                players[j].GetCoords()[i].y += offset_y;
+            }
+        }
         players[0].GetCoords()[0] = players[0].GetCoords()[40];
         players[1].GetCoords()[0] = players[1].GetCoords()[40];
         players[2].GetCoords()[0] = players[2].GetCoords()[40];
@@ -366,7 +376,7 @@ public class Start {
         JFrame frame = new JFrame("Start");
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800,800);
+        frame.setSize(1000,1000);
         var label = new JLabel("Main Panel", SwingConstants.CENTER);
         label.setBackground(new Color(255,0,0));
         LayeredPane layeredPane = new LayeredPane(players);
