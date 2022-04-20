@@ -3,7 +3,7 @@ import java.awt.Graphics;
 import java.awt.Color;
 
 public class HouseGUI extends JPanel {
-    private Color color = Color.RED;
+    private Color color = Color.GREEN;
     public void SetColor(Color color){
         this.color = color;
     }

@@ -121,12 +121,25 @@ public class Start {
 
             di1=random.nextInt(6)+1;
             di2=random.nextInt(6)+1;
+            String message = "You rolled ".concat(String.valueOf(di1)).concat(" and ").concat(String.valueOf(di2));
+            JOptionPane.showMessageDialog(null, message);
+           
+            
+
+          
             if(di1==di2)
+            {
                 players[turn].injail();
+                int current_position = players[turn].GetPosition();
+                players[turn].SetPosition(current_position += di1 + di2);
+
+            }
+              
         }
         else{
             di1=random.nextInt(6)+1;
             di2=random.nextInt(6)+1;
+            
             String message = "You rolled ".concat(String.valueOf(di1)).concat(" and ").concat(String.valueOf(di2));
             JOptionPane.showMessageDialog(null, message);
             System.out.println(String.valueOf(di1 + di2));
@@ -395,9 +408,9 @@ public class Start {
                 counter ++;
             }
         }
-        players[0].Buy(lands[21].GetDeed().GetId(), lands[21].GetDeed().GetCostOfDeed(), lands[21].GetDeed().GetInstance());
-        players[0].Buy(lands[5].GetDeed().GetId(), lands[5].GetDeed().GetCostOfDeed(), lands[5].GetDeed().GetInstance());
-        players[0].Buy(lands[15].GetDeed().GetId(), lands[15].GetDeed().GetCostOfDeed(), lands[15].GetDeed().GetInstance());
+        players[0].Buy(lands[6].GetDeed().GetId(), lands[6].GetDeed().GetCostOfDeed(), lands[6].GetDeed().GetInstance());
+        players[0].Buy(lands[8].GetDeed().GetId(), lands[8].GetDeed().GetCostOfDeed(), lands[8].GetDeed().GetInstance());
+        players[0].Buy(lands[9].GetDeed().GetId(), lands[9].GetDeed().GetCostOfDeed(), lands[9].GetDeed().GetInstance());
         turn -= 3;
     }
 

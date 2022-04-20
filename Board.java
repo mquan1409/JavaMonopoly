@@ -88,7 +88,7 @@ public class Board extends JComponent
 
         
         
-        g.setColor( new Color( 170, 224, 250 ) );
+        g.setColor( new Color( 170, 250, 250 ) );
         g.fillRect( 45+16+45*3, 476 , 44, 15 );
         g.fillRect( 45+16+45*1, 476 , 44, 15 );
         g.fillRect( 45+16, 476 , 44, 15 );

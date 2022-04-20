@@ -9,7 +9,7 @@ public class Player {
     private String name;
     private int position;
     private Coord[] coords;
-    private boolean jail=false;
+    private boolean jail=true;
     private int num_railroads_owned = 0;
     private int num_utilities_owned = 0;
     public Coord[] GetCoords(){
