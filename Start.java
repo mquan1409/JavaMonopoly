@@ -148,14 +148,17 @@ public class Start {
             // var test = 15;
             players[turn].SetPosition(current_position += di1 + di2);
             check=players[turn].GetPosition()%40;
+            if(players[turn].GetPosition() == check){
+                LayeredPane.UpdateDataPanels();
+            }
             if(players[turn].GetPosition()!=check)
             {
                 int money;
                 money=players[turn].GetMoneyOwned()+200;
                 players[turn].SetMoneyOwned(money);
                 players[turn].SetPosition(check);
+                LayeredPane.UpdateDataPanels();
             }
-            LayeredPane.UpdateDataPanels();
             String message = "You rolled ".concat(String.valueOf(di1)).concat(" and ").concat(String.valueOf(di2));
             JOptionPane.showMessageDialog(null, message);
             if((di1 == di2) && (di1 != 0)){
@@ -323,7 +326,7 @@ public class Start {
             players[1].GetCoords()[30 + i] = new Coord(x+455+15, y+45*i+15);
 
         int offset_x = 201;
-        int offset_y = 101;
+        int offset_y = 21;
 
         for(int i = 1; i < 41; i ++){
             for(int j = 0; j < 4; j ++){

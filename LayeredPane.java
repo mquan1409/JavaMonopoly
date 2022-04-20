@@ -84,7 +84,7 @@ public class LayeredPane extends JPanel implements ActionListener {
         board.setBackground(Color.BLUE);
         board.setForeground(Color.BLACK);
         board.setBorder(null);
-        board.setBounds(200, 100, 1200, 1050);
+        board.setBounds(200, 20, 1200, 1050);
         layeredPane.add(board, 1);
         for(int i = 0; i < 4; i ++){
             player_guis[i] = new PlayerGUI();
@@ -128,13 +128,13 @@ public class LayeredPane extends JPanel implements ActionListener {
         roll_button = new JButton("Roll");
         roll_button.setActionCommand("Roll");
         roll_button.addActionListener(this);
-        roll_button.setBounds(300, 50, 80, 25);
+        roll_button.setBounds(300, 5, 80, 25);
         layeredPane.add(roll_button, 0);
 
         buy_house_button = new JButton("Buy Houses");
         buy_house_button.setActionCommand("House");
         buy_house_button.addActionListener(this);
-        buy_house_button.setBounds(400, 50, 150, 25);
+        buy_house_button.setBounds(400, 5, 150, 25);
         layeredPane.add(buy_house_button, 0);
 
         buy_dialog = new BuyDialog();

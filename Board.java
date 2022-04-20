@@ -17,7 +17,7 @@ public class Board extends JComponent
 
         super.paintComponent( g );
         g.setColor( new Color( 204, 213, 255 ) );
-        g.fillRect( 15, 25, 700, 700 );
+        g.fillRect( 15, 25, 690, 690 );
         g.setColor( new Color( 0, 0, 0 ) );
 
         //Draw Row 1 property boxes
