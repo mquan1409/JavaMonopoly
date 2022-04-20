@@ -9,6 +9,9 @@ public class Player {
     private String name;
     private int position;
     private Coord[] coords;
+    private boolean jail=false;
+    private int num_railroads_owned = 0;
+    private int num_utilities_owned = 0;
     public Coord[] GetCoords(){
         return coords;
     }
@@ -42,11 +45,21 @@ public class Player {
     public void SetMoneyOwned(int money){
         money_owned = money;
     }
+    public int GetNumRailroadsOwned(){
+        return num_railroads_owned;
+    }
+    public int GetNumUtilitiesOwned(){
+        return num_utilities_owned;
+    }
     public void Buy(int deed_id, int cost, Deed deed_bought){
         id_deeds_owned.add(deed_id);
         money_owned -= cost;
         deed_bought.SetOwnerId(Id);
         LayeredPane.UpdateDataPanels();
+        if(deed_id%10 == 5)
+            num_railroads_owned ++;
+        else if(deed_id == 12 || deed_id == 28)
+            num_utilities_owned ++;
         Start.NextTurn();
     }
     public Player(int id){
@@ -55,5 +68,14 @@ public class Player {
         id_deeds_owned = new ArrayList<Integer>();
         money_owned = 1500;
         position = 0;
+    }
+    public void injail()
+    {
+        jail=!jail;
+    }
+
+    public boolean getjail()
+    {
+        return jail;
     }
 }

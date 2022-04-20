@@ -20,6 +20,7 @@ public class LayeredPane extends JPanel implements ActionListener {
     private static JButton buy_house_button;
     private static Player[] players;
     private BuyDialog buy_dialog;
+    private PayJail pay_dialog;
     private static JLabel[] money_labels;
     private static PropertyContainerGUI[] property_containers;
     public static void AddHouse(Deed deed){
@@ -144,6 +145,15 @@ public class LayeredPane extends JPanel implements ActionListener {
         buy_dialog.setVisible(false);
         layeredPane.add(buy_dialog, 0);
         add(layeredPane);
+
+        pay_dialog = new PayJail();
+        pay_dialog.setOpaque(true);
+        pay_dialog.setBackground(Color.PINK);
+        pay_dialog.setBorder(null);
+        pay_dialog.setBounds(250, 250, 150, 45);
+        pay_dialog.setVisible(false);
+        layeredPane.add(pay_dialog, 0);
+        add(layeredPane);
     }
     public void SetOriginFrame(JFrame frame){
         this.frame = frame;
@@ -169,6 +179,11 @@ public class LayeredPane extends JPanel implements ActionListener {
             
             layeredPane.add(player_guis[turn], 0);
             boolean buyable = Start.CheckBuyable();
+            if(players[turn].getjail())
+            {
+                pay_dialog.setVisible(true);
+                roll_button.setEnabled(false);
+            }    
             if(buyable){
                 buy_dialog.setVisible(true);
                 roll_button.setEnabled(false);
@@ -176,9 +191,19 @@ public class LayeredPane extends JPanel implements ActionListener {
             if(Start.Rentable()){
                 Start.Rent();
             }
+            for(int i=0; i<4; i++)
+            {
+                
+                if(players[i].GetMoneyOwned()>=2500)
+                {
+                    int temp=i+1;
+                System.out.println("The winner is player: "+temp);
+                roll_button.setEnabled(false);
+                }
+            }
             frame.repaint();
             frame.revalidate();
-            if(!buyable)
+            if(!buyable&&!players[turn].getjail()&&players[0].GetMoneyOwned()<2500&&players[1].GetMoneyOwned()<2500&&players[2].GetMoneyOwned()<2500&&players[3].GetMoneyOwned()<2500)
                 Start.NextTurn();
             //button.setEnabled(false);
         }

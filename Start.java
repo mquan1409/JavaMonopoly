@@ -23,6 +23,9 @@ public class Start {
     public static ArrayList<Integer> sets_buyhouseable = new ArrayList<Integer>();
     public static int num_houses_buying = 0;
     public static Coord coord_houses [] = new Coord [22];
+    public static Player[] GetPlayers(){
+        return players;
+    }
     public static void Buy(){
         Deed deed = lands[players[turn].GetPosition()].GetDeed();
         if(deed != null){
@@ -38,6 +41,14 @@ public class Start {
             return true;
         }
         return false;
+    }
+    public static void changejail(){
+        int money;
+        money=players[turn].GetMoneyOwned()-50;
+        players[turn].SetMoneyOwned(money);
+        players[turn].injail();
+        Start.NextTurn();
+        LayeredPane.UpdateDataPanels();
     }
     public static void Rent(){
         Deed deed = lands[players[turn].GetPosition()].GetDeed();
@@ -103,26 +114,38 @@ public class Start {
         int check;          //check if the player passed Go
         int di1 = 0, di2 = 0;
         Random random = new Random();
-        di1=random.nextInt(6)+1;
-        di2=random.nextInt(6)+1;
-        System.out.println(String.valueOf(di1 + di2));
-        int current_position = players[turn].GetPosition();
-        players[turn].SetPosition(current_position += di1 + di2);
-        check=players[turn].GetPosition()%40;
-        if(players[turn].GetPosition()!=check)
+
+        if(players[turn].getjail())
         {
-            int money;
-            money=players[turn].GetMoneyOwned()+200;
-            players[turn].SetMoneyOwned(money);
-            players[turn].SetPosition(check);
-            LayeredPane.UpdateDataPanels();
+
+            di1=random.nextInt(6)+1;
+            di2=random.nextInt(6)+1;
+            if(di1==di2)
+                players[turn].injail();
         }
-        if((di1 == di2) && (di1 != 0)){
-            System.out.println("Roll double!");
-            double_counter ++;
+        else{
+            di1=random.nextInt(6)+1;
+            di2=random.nextInt(6)+1;
+            System.out.println(String.valueOf(di1 + di2));
+            int current_position = players[turn].GetPosition();
+            // var test = 15;
+            players[turn].SetPosition(current_position += di1 + di2);
+            check=players[turn].GetPosition()%40;
+            if(players[turn].GetPosition()!=check)
+            {
+                int money;
+                money=players[turn].GetMoneyOwned()+200;
+                players[turn].SetMoneyOwned(money);
+                players[turn].SetPosition(check);
+                LayeredPane.UpdateDataPanels();
+            }
+            if((di1 == di2) && (di1 != 0)){
+                System.out.println("Roll double!");
+                double_counter ++;
+            }
+            if(di1 != di2)
+                double_counter = 0;
         }
-        if(di1 != di2)
-            double_counter = 0;
     }
     public static void main(String args[]){
         //Setting up coordinates for the houses
@@ -290,6 +313,7 @@ public class Start {
         }
         lands = new Land[40];
         Integer[] property_nums = {1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};
+        String[] railroad_names = {"Reading Railroad", "Pennsylvania Railroad", "B&O Railroad", "Short Line Railroad"};
         int counter = 0;
         for(int i = 0; i < 40; i ++){
             String name = "N/A";
@@ -307,7 +331,7 @@ public class Start {
             
             lands[i] = new Land();
             if(i%10 == 5){
-                lands[i].SetDeed(new RailRoad("Railroad", 200, 0, 0, i));
+                lands[i].SetDeed(new RailRoad(railroad_names[i/10], 200, 100, 0, i));
             }
             // else if(i == 10){
             //     lands[i].SetDeed(new Deed("Just Visiting", true, false));
@@ -351,9 +375,9 @@ public class Start {
                 counter ++;
             }
         }
-        players[0].Buy(lands[21].GetDeed().GetId(), 100, lands[21].GetDeed().GetInstance());
-        players[0].Buy(lands[23].GetDeed().GetId(), 100, lands[23].GetDeed().GetInstance());
-        players[0].Buy(lands[24].GetDeed().GetId(), 100, lands[24].GetDeed().GetInstance());
+        players[0].Buy(lands[21].GetDeed().GetId(), lands[21].GetDeed().GetCostOfDeed(), lands[21].GetDeed().GetInstance());
+        players[0].Buy(lands[5].GetDeed().GetId(), lands[5].GetDeed().GetCostOfDeed(), lands[5].GetDeed().GetInstance());
+        players[0].Buy(lands[15].GetDeed().GetId(), lands[15].GetDeed().GetCostOfDeed(), lands[15].GetDeed().GetInstance());
         turn -= 3;
     }
 
@@ -393,6 +417,7 @@ public class Start {
             case 4:
             System.out.println("Go to Jail. Go directly to jail, do not pass Go, do not collect $200");
             players[turn].SetPosition(10);
+            players[turn].injail();
             break;
 
             case 5:
