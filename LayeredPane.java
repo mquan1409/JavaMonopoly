@@ -17,6 +17,7 @@ public class LayeredPane extends JPanel implements ActionListener {
     private static JFrame frame;
     private static PlayerGUI[] player_guis;
     private static JButton roll_button;
+    private static JButton buy_house_button;
     private static Player[] players;
     private BuyDialog buy_dialog;
     private static JLabel[] money_labels;
@@ -109,9 +110,16 @@ public class LayeredPane extends JPanel implements ActionListener {
         }
 
         roll_button = new JButton("Roll");
+        roll_button.setActionCommand("Roll");
         roll_button.addActionListener(this);
         roll_button.setBounds(300, 300, 80, 25);
         layeredPane.add(roll_button, 0);
+
+        buy_house_button = new JButton("Buy Houses");
+        buy_house_button.setActionCommand("House");
+        buy_house_button.addActionListener(this);
+        buy_house_button.setBounds(600, 300, 80, 25);
+        layeredPane.add(buy_house_button, 0);
 
         buy_dialog = new BuyDialog();
         buy_dialog.setOpaque(true);
@@ -126,36 +134,45 @@ public class LayeredPane extends JPanel implements ActionListener {
         this.frame = frame;
     }
     public void actionPerformed(ActionEvent e){
-        int turn = Start.turn;
-        Start.Play();
-        // System.out.print(layeredPane.getComponentCountInLayer(0));
-        layeredPane.remove(player_guis[turn]);
-        
-        player_guis[turn] = new PlayerGUI();
-        player_guis[turn].setOpaque(false);
-        player_guis[turn].setBackground(Color.PINK);
-
-        player_guis[0].SetColor(Color.GREEN);
-        player_guis[1].SetColor(Color.RED);
-        player_guis[2].SetColor(Color.BLUE);
-        player_guis[3].SetColor(Color.GRAY);
-
-        player_guis[turn].setBorder(null);
-        player_guis[turn].setBounds(players[turn].GetCoordNow().x, players[turn].GetCoordNow().y, 140, 140);
-        
-        layeredPane.add(player_guis[turn], 0);
-        boolean buyable = Start.CheckBuyable();
-        if(buyable){
-            buy_dialog.setVisible(true);
-            roll_button.setEnabled(false);
+        if(e.getActionCommand() == "Roll"){
+            int turn = Start.turn;
+            Start.Play();
+            // System.out.print(layeredPane.getComponentCountInLayer(0));
+            layeredPane.remove(player_guis[turn]);
+            
+            player_guis[turn] = new PlayerGUI();
+            player_guis[turn].setOpaque(false);
+            player_guis[turn].setBackground(Color.PINK);
+    
+            player_guis[0].SetColor(Color.GREEN);
+            player_guis[1].SetColor(Color.RED);
+            player_guis[2].SetColor(Color.BLUE);
+            player_guis[3].SetColor(Color.GRAY);
+    
+            player_guis[turn].setBorder(null);
+            player_guis[turn].setBounds(players[turn].GetCoordNow().x, players[turn].GetCoordNow().y, 140, 140);
+            
+            layeredPane.add(player_guis[turn], 0);
+            boolean buyable = Start.CheckBuyable();
+            if(buyable){
+                buy_dialog.setVisible(true);
+                roll_button.setEnabled(false);
+            }
+            if(Start.Rentable()){
+                Start.Rent();
+            }
+            frame.repaint();
+            frame.revalidate();
+            if(!buyable)
+                Start.NextTurn();
+            //button.setEnabled(false);
         }
-        if(Start.Rentable()){
-            Start.Rent();
+        else if(e.getActionCommand() == "House"){
+            if(Start.CheckBuyHouseable()){
+                System.out.println("Can Buy");
+                System.out.println(Start.sets_buyhouseable.get(0));
+                Start.BuyHouses();
+            }
         }
-        frame.repaint();
-        frame.revalidate();
-        if(!buyable)
-            Start.NextTurn();
-        //button.setEnabled(false);
     }
 }

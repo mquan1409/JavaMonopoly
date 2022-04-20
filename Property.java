@@ -15,18 +15,36 @@ public class Property extends Deed{
     private int CostOfHotel;
     private int[] RentProp;
     private int NumHouses;
-    boolean Hotel;
+    private int SetNumber;
+    private int MaxPropsOnSet;
+    private boolean Hotel;
 
+    @Override
+    public void SetNumHouses(int value){
+        NumHouses = value;
+    }
+    @Override
     public int GetNumHouses(){
         return NumHouses;
     }
-
+    @Override
+    public int GetSetNumber(){
+        return SetNumber;
+    }
+    @Override
+    public int GetMaxPropsOnSet(){
+        return MaxPropsOnSet;
+    }
     @Override
     public int GetRent(){
         return RentProp[NumHouses];
     }
+    @Override
+    public int GetHouseCost(){
+        return CostOfHouse;
+    }
     Property(String name, int cost, int mort, int rent, int houseCost,
-               int r1, int r2, int r3, int r4, int rh, int hotelCost, int id)
+               int r1, int r2, int r3, int r4, int rh, int hotelCost, int setNum, int maxPropsOnSet, int id)
     {
         super(name, cost, mort, rent, id);
         RentProp = new int[6];
@@ -34,6 +52,8 @@ public class Property extends Deed{
         NumHouses = 0;
         CostOfHouse = houseCost;
         hotelCost = CostOfHotel;
+        SetNumber = setNum;
+        MaxPropsOnSet = maxPropsOnSet;
         Hotel = false;
     }
 }

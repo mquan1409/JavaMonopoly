@@ -58,6 +58,20 @@ public class Deed {
     public Deed GetInstance(){
         return this;
     }
+    public int GetSetNumber(){
+        return -1;
+    }
+    public int GetMaxPropsOnSet(){
+        return -1;
+    }
+    public void SetNumHouses(int value){
+    }
+    public int GetNumHouses(){
+        return -1;
+    }
+    public int GetHouseCost(){
+        return -1;
+    }
     public Deed (String name, int cost, int mort, int rent, int id)
     {
         Name = name;

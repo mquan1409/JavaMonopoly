@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.awt.*;
 import java.util.Random;
@@ -8,6 +9,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.text.LabelView;
@@ -18,6 +20,8 @@ public class Start {
     public static int turn = 0;
     private static int double_counter = 0;
     public static Land[] lands;
+    public static ArrayList<Integer> sets_buyhouseable = new ArrayList<Integer>();
+    public static int num_houses_buying = 0;
     public static void Buy(){
         Deed deed = lands[players[turn].GetPosition()].GetDeed();
         if(deed != null){
@@ -47,6 +51,44 @@ public class Start {
             return deed.IsOwned();
         else
             return false;
+    }
+    public static void BuyHouses(){
+        var property = JOptionPane.showInputDialog("Input where you want buy houses: ");
+        var num_houses = JOptionPane.showInputDialog("Input number of houses: ");
+        var property_id = Integer.parseInt(property);
+        var num_houses_int = Integer.parseInt(num_houses);
+        Deed deed = lands[property_id].GetDeed();
+        if(sets_buyhouseable.contains(deed.GetSetNumber())){
+            deed.SetNumHouses(lands[property_id].GetDeed().GetNumHouses() + num_houses_int);
+            players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - (deed.GetHouseCost() * num_houses_int));
+            LayeredPane.UpdateDataPanels();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Cannot buy house on that property");
+        }
+        System.out.println(lands[property_id].GetDeed().GetNumHouses());
+    }
+    public static boolean CheckBuyHouseable(){
+        sets_buyhouseable.clear();
+        ArrayList<Integer> id_deeds_owned = players[turn].GetDeedsOwned();
+        for(int i = 0; i < id_deeds_owned.size(); i ++){
+            Deed deed = lands[id_deeds_owned.get(i)].GetDeed();
+            if(deed instanceof Property){
+                int counter = 1;
+                int set_num = deed.GetSetNumber();
+                int set_num_max = deed.GetMaxPropsOnSet();
+                for(int j = i + 1; j < id_deeds_owned.size(); j ++){
+                    if(lands[id_deeds_owned.get(j)].GetDeed().GetSetNumber() == set_num)
+                        counter ++;
+                }
+                if(counter == set_num_max)
+                    sets_buyhouseable.add(set_num);
+            }
+        }
+        if(sets_buyhouseable.size() != 0){
+            return true;
+        }
+        return false;
     }
     public static void NextTurn(){
         if(double_counter == 0)
@@ -79,7 +121,150 @@ public class Start {
         if(di1 != di2)
             double_counter = 0;
     }
+    public static void main(String args[]){
+        player_positions = new int[4];        //store the positions of player 0-3
+        players = new Player[4];              //there are 4 players (player 0-3)
 
+        for(int i = 0; i < 4; i ++){
+            players[i] = new Player(i);
+            player_positions[i] = players[i].GetPosition();
+        }
+        int x=24;
+        int y=30;
+
+        //Row 1
+        for(int i=1; i<11; i++)
+            players[3].GetCoords()[i] = new Coord(520 - (x+45*i+5), y+10+450);
+        for(int i=1; i<11; i++)
+            players[1].GetCoords()[i] = new Coord(520 - (x+45*i+5), y+450+15+10);
+        for(int i=1; i<11; i++)
+            players[2].GetCoords()[i] = new Coord(520 - (x+45*i+15+5), y+450+10);
+        for(int i=1; i<11; i++)
+            players[0].GetCoords()[i] = new Coord(520 - (x+45*i+15+5), y+450+15+10);
+
+        //Row 2
+        for(int i=1; i<11; i++)
+            players[0].GetCoords()[10 + i] = new Coord(x-5, 525 - (y+45*i));
+        for(int i=1; i<11; i++)
+            players[1].GetCoords()[10 + i] = new Coord(x+10, 525 - (y+45*i));
+        for(int i=1; i<11; i++)
+            players[2].GetCoords()[10 + i] = new Coord(x-5, 525 - (y+45*i+15));
+        for(int i=1; i<11; i++)
+            players[3].GetCoords()[10 + i] = new Coord(x+10, 525 - (y+45*i+15));
+
+        //Row 3
+        for(int i=1; i<11; i++)
+            players[2].GetCoords()[20 + i] = new Coord(x+45*i, y);
+        for(int i=1; i<11; i++)
+            players[3].GetCoords()[20 + i] = new Coord(x+45*i+15, y);
+        for(int i=1; i<11; i++)
+            players[0].GetCoords()[20 + i] = new Coord(x+45*i, y+15);
+        for(int i=1; i<11; i++)
+            players[1].GetCoords()[20 + i] = new Coord(x+45*i+15, y+15);
+
+        //Row 4
+        for(int i=1; i<11; i++)
+            players[2].GetCoords()[30 + i] = new Coord(x+455, y+45*i);
+        for(int i=1; i<11; i++)
+            players[3].GetCoords()[30 + i] = new Coord(x+455+15, y+45*i);
+        for(int i=1; i<11; i++)
+            players[0].GetCoords()[30 + i] = new Coord(x+455, y+45*i+15);
+        for(int i=1; i<11; i++)
+            players[1].GetCoords()[30 + i] = new Coord(x+455+15, y+45*i+15);
+
+        int offset_x = 201;
+        int offset_y = 101;
+
+        for(int i = 1; i < 41; i ++){
+            for(int j = 0; j < 4; j ++){
+                players[j].GetCoords()[i].x += offset_x;
+                players[j].GetCoords()[i].y += offset_y;
+            }
+        }
+        players[0].GetCoords()[0] = players[0].GetCoords()[40];
+        players[1].GetCoords()[0] = players[1].GetCoords()[40];
+        players[2].GetCoords()[0] = players[2].GetCoords()[40];
+        players[3].GetCoords()[0] = players[3].GetCoords()[40];
+        JFrame frame = new JFrame("Start");
+        frame.setLayout(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1000,1000);
+        var label = new JLabel("Main Panel", SwingConstants.CENTER);
+        label.setBackground(new Color(255,0,0));
+        LayeredPane layeredPane = new LayeredPane(players);
+        layeredPane.setOpaque(true);
+        layeredPane.SetOriginFrame(frame);
+        frame.setContentPane(layeredPane);
+        frame.setVisible(true);
+        BufferedReader input;
+        try{
+            input = new BufferedReader(new FileReader("Info.txt"));
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return;
+        }
+        lands = new Land[40];
+        Integer[] property_nums = {1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};
+        for(int i = 0; i < 40; i ++){
+            String name = "N/A";
+            int cost = 0, 
+                price_per_house = 0, 
+                rent = 0, 
+                rent_1_house = 0, 
+                rent_2_house = 0, 
+                rent_3_house = 0, 
+                rent_4_house = 0, 
+                rent_hotel = 0, 
+                mortgage = 0,
+                set_number = 0,
+                max_props_on_set = 0;;
+            
+            lands[i] = new Land();
+            if(i%10 == 5){
+                lands[i].SetDeed(new RailRoad("Railroad", 200, 0, 0, i));
+            }
+            // else if(i == 10){
+            //     lands[i].SetDeed(new Deed("Just Visiting", true, false));
+            // }
+            // else if(i == 30){
+            //     lands[i].SetDeed(new Deed("Go To Jail", false, true));
+            // }
+            else if(i == 12){
+                lands[i].SetDeed(new Utility("Electric Company", 150, 75, 0, i));
+            }
+            else if(i == 28){
+                lands[i].SetDeed(new Utility("Water Works", 150, 75, 0, i));
+            }
+            else if(Arrays.asList(property_nums).contains(i)){
+                try{
+                    name = input.readLine();
+                    cost = Integer.parseInt(input.readLine());
+                    price_per_house = Integer.parseInt(input.readLine());
+                    rent = Integer.parseInt(input.readLine());
+                    rent_1_house = Integer.parseInt(input.readLine());
+                    rent_2_house = Integer.parseInt(input.readLine());
+                    rent_3_house = Integer.parseInt(input.readLine());
+                    rent_4_house = Integer.parseInt(input.readLine());
+                    rent_hotel = Integer.parseInt(input.readLine());
+                    mortgage = Integer.parseInt(input.readLine());
+                    set_number = Integer.parseInt(input.readLine());
+                    max_props_on_set = Integer.parseInt(input.readLine());
+                }
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+                lands[i].SetDeed(new Property(
+                    name, cost, mortgage, rent, 100,
+                    rent_1_house, rent_2_house, rent_3_house, rent_4_house, rent_hotel,
+                    100, set_number, max_props_on_set, i));
+            }
+        }
+        players[0].Buy(lands[6].GetDeed().GetId(), 100, lands[6].GetDeed().GetInstance());
+        players[0].Buy(lands[8].GetDeed().GetId(), 100, lands[8].GetDeed().GetInstance());
+        players[0].Buy(lands[9].GetDeed().GetId(), 100, lands[9].GetDeed().GetInstance());
+        turn -= 3;
+    }
 
     public static void chestcard()
     {
@@ -192,9 +377,7 @@ public class Start {
             players[turn].SetMoneyOwned(money);
             break;
         }
-
     }
-
 
     public static void chancecard()
     {
@@ -294,156 +477,7 @@ public class Start {
             money=players[turn].GetMoneyOwned()+150;
             players[turn].SetMoneyOwned(money);
             break;
-
-
-
-
-
-        }
-
-    }
-
-
-
-
-
-
-
-    public static void main(String args[]){
-        player_positions = new int[4];        //store the positions of player 0-3
-        players = new Player[4];              //there are 4 players (player 0-3)
-
-        for(int i = 0; i < 4; i ++){
-            players[i] = new Player(i);
-            player_positions[i] = players[i].GetPosition();
-        }
-        int x=24;
-        int y=30;
-
-        //Row 1
-        for(int i=1; i<11; i++)
-            players[3].GetCoords()[i] = new Coord(520 - (x+45*i+5), y+10+450);
-        for(int i=1; i<11; i++)
-            players[1].GetCoords()[i] = new Coord(520 - (x+45*i+5), y+450+15+10);
-        for(int i=1; i<11; i++)
-            players[2].GetCoords()[i] = new Coord(520 - (x+45*i+15+5), y+450+10);
-        for(int i=1; i<11; i++)
-            players[0].GetCoords()[i] = new Coord(520 - (x+45*i+15+5), y+450+15+10);
-
-        //Row 2
-        for(int i=1; i<11; i++)
-            players[0].GetCoords()[10 + i] = new Coord(x-5, 525 - (y+45*i));
-        for(int i=1; i<11; i++)
-            players[1].GetCoords()[10 + i] = new Coord(x+10, 525 - (y+45*i));
-        for(int i=1; i<11; i++)
-            players[2].GetCoords()[10 + i] = new Coord(x-5, 525 - (y+45*i+15));
-        for(int i=1; i<11; i++)
-            players[3].GetCoords()[10 + i] = new Coord(x+10, 525 - (y+45*i+15));
-
-        //Row 3
-        for(int i=1; i<11; i++)
-            players[2].GetCoords()[20 + i] = new Coord(x+45*i, y);
-        for(int i=1; i<11; i++)
-            players[3].GetCoords()[20 + i] = new Coord(x+45*i+15, y);
-        for(int i=1; i<11; i++)
-            players[0].GetCoords()[20 + i] = new Coord(x+45*i, y+15);
-        for(int i=1; i<11; i++)
-            players[1].GetCoords()[20 + i] = new Coord(x+45*i+15, y+15);
-
-        //Row 4
-        for(int i=1; i<11; i++)
-            players[2].GetCoords()[30 + i] = new Coord(x+455, y+45*i);
-        for(int i=1; i<11; i++)
-            players[3].GetCoords()[30 + i] = new Coord(x+455+15, y+45*i);
-        for(int i=1; i<11; i++)
-            players[0].GetCoords()[30 + i] = new Coord(x+455, y+45*i+15);
-        for(int i=1; i<11; i++)
-            players[1].GetCoords()[30 + i] = new Coord(x+455+15, y+45*i+15);
-
-        int offset_x = 201;
-        int offset_y = 101;
-
-        for(int i = 1; i < 41; i ++){
-            for(int j = 0; j < 4; j ++){
-                players[j].GetCoords()[i].x += offset_x;
-                players[j].GetCoords()[i].y += offset_y;
-            }
-        }
-        players[0].GetCoords()[0] = players[0].GetCoords()[40];
-        players[1].GetCoords()[0] = players[1].GetCoords()[40];
-        players[2].GetCoords()[0] = players[2].GetCoords()[40];
-        players[3].GetCoords()[0] = players[3].GetCoords()[40];
-        JFrame frame = new JFrame("Start");
-        frame.setLayout(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000,1000);
-        var label = new JLabel("Main Panel", SwingConstants.CENTER);
-        label.setBackground(new Color(255,0,0));
-        LayeredPane layeredPane = new LayeredPane(players);
-        layeredPane.setOpaque(true);
-        layeredPane.SetOriginFrame(frame);
-        frame.setContentPane(layeredPane);
-        frame.setVisible(true);
-        BufferedReader input;
-        try{
-            input = new BufferedReader(new FileReader("Info.txt"));
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-            return;
-        }
-        lands = new Land[40];
-        Integer[] property_nums = {1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};
-        for(int i = 0; i < 40; i ++){
-            String name = "N/A";
-            int cost = 0, 
-                price_per_house = 0, 
-                rent = 0, 
-                rent_1_house = 0, 
-                rent_2_house = 0, 
-                rent_3_house = 0, 
-                rent_4_house = 0, 
-                rent_hotel = 0, 
-                mortgage = 0;
-            
-            lands[i] = new Land();
-            if(i%10 == 5){
-                lands[i].SetDeed(new RailRoad("Railroad", 200, 0, 0, i));
-            }
-            // else if(i == 10){
-            //     lands[i].SetDeed(new Deed("Just Visiting", true, false));
-            // }
-            // else if(i == 30){
-            //     lands[i].SetDeed(new Deed("Go To Jail", false, true));
-            // }
-            else if(i == 12){
-                lands[i].SetDeed(new Utility("Electric Company", 150, 75, 0, i));
-            }
-            else if(i == 28){
-                lands[i].SetDeed(new Utility("Water Works", 150, 75, 0, i));
-            }
-            else if(Arrays.asList(property_nums).contains(i)){
-                try{
-                    name = input.readLine();
-                    cost = Integer.parseInt(input.readLine());
-                    price_per_house = Integer.parseInt(input.readLine());
-                    rent = Integer.parseInt(input.readLine());
-                    rent_1_house = Integer.parseInt(input.readLine());
-                    rent_2_house = Integer.parseInt(input.readLine());
-                    rent_3_house = Integer.parseInt(input.readLine());
-                    rent_4_house = Integer.parseInt(input.readLine());
-                    rent_hotel = Integer.parseInt(input.readLine());
-                    mortgage = Integer.parseInt(input.readLine());
-                }
-                catch(Exception e){
-                    System.out.println(e.getMessage());
-                }
-                lands[i].SetDeed(new Property(
-                    name, cost, mortgage, rent, 100,
-                    rent_1_house, rent_2_house, rent_3_house, rent_4_house, rent_hotel,
-                    100, i));
-            }
-            
         }
     }
 }
+

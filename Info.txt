@@ -8,6 +8,8 @@ Mediterranean Avenue/Old Kent Rd
 160
 250
 30
+0
+2
 Baltic Avenue/Whitechapel Rd	
 60
 50
@@ -18,6 +20,8 @@ Baltic Avenue/Whitechapel Rd
 320
 450
 30
+0
+2
 Oriental Avenue/The Angel, Islington	
 100
 50
@@ -28,6 +32,8 @@ Oriental Avenue/The Angel, Islington
 400
 550
 50
+1
+3
 Vermont Avenue/Euston Rd	
 100
 50
@@ -38,6 +44,8 @@ Vermont Avenue/Euston Rd
 400
 550
 50
+1
+3
 Connecticut Avenue/Pentonville Rd	
 120
 50
@@ -48,6 +56,8 @@ Connecticut Avenue/Pentonville Rd
 450
 600
 60
+1
+3
 St. Charles Place/Pall Mall	
 140
 100
@@ -58,6 +68,8 @@ St. Charles Place/Pall Mall
 625
 750
 70
+2
+3
 States Avenue/Whitehall	
 140
 100
@@ -68,6 +80,8 @@ States Avenue/Whitehall
 625
 750
 70
+2
+3
 Virginia Avenue/Northumberland Ave	
 160
 100
@@ -78,6 +92,8 @@ Virginia Avenue/Northumberland Ave
 700
 900
 80
+2
+3
 St. James Place/Bow St	
 180
 100
@@ -88,6 +104,8 @@ St. James Place/Bow St
 750
 950
 90
+3
+3
 Tennessee Avenue/Marlborough St	
 180
 100
@@ -98,6 +116,8 @@ Tennessee Avenue/Marlborough St
 750
 950
 90
+3
+3
 New York Avenue/Vine St	
 200
 100
@@ -108,6 +128,8 @@ New York Avenue/Vine St
 800
 1000
 100
+3
+3
 Kentucky Avenue/Strand	
 220
 150
@@ -118,6 +140,8 @@ Kentucky Avenue/Strand
 875
 1050
 110
+4
+3
 Indiana Avenue/Fleet St	
 220
 150
@@ -128,6 +152,8 @@ Indiana Avenue/Fleet St
 875
 1050
 110
+4
+3
 Illinois Avenue/Trafalgar Sq	
 240
 150
@@ -138,6 +164,8 @@ Illinois Avenue/Trafalgar Sq
 925
 1100
 120
+4
+3
 Atlantic Avenue/Leicester Sq	
 260
 150
@@ -148,6 +176,8 @@ Atlantic Avenue/Leicester Sq
 975
 1150
 130
+5
+3
 Ventnor Avenue/Coventry St	
 260
 150
@@ -158,6 +188,8 @@ Ventnor Avenue/Coventry St
 975
 1150
 130
+5
+3
 * Marvin Gardens [Marven Gardens]/Piccadilly	
 280
 150
@@ -168,6 +200,8 @@ Ventnor Avenue/Coventry St
 1025
 1200
 140
+5
+3
 Pacific Avenue/Regent St	
 300
 200
@@ -178,6 +212,8 @@ Pacific Avenue/Regent St
 1100
 1275
 150
+6
+3
 North Carolina Avenue [South Carolina Avenue]/Oxford St	
 300
 200
@@ -188,6 +224,8 @@ North Carolina Avenue [South Carolina Avenue]/Oxford St
 1100
 1275
 150
+6
+3
 Pennsylvania Avenue/Bond St	
 320
 200
@@ -198,6 +236,8 @@ Pennsylvania Avenue/Bond St
 1200
 1400
 160
+6
+3
 Park Place/Park Lane	
 350
 200
@@ -208,6 +248,8 @@ Park Place/Park Lane
 1300
 1500
 175
+7
+2
 Boardwalk/Mayfair	
 400
 200
@@ -218,3 +260,5 @@ Boardwalk/Mayfair
 1700
 2000
 200
+7
+2
