@@ -54,6 +54,7 @@ public class Start {
             money=players[turn].GetMoneyOwned()+200;
             players[turn].SetMoneyOwned(money);
             players[turn].SetPosition(check);
+            LayeredPane.UpdateDataPanels();
         }
         if((di1 == di2) && (di1 != 0)){
             System.out.println("Roll double!");
@@ -412,7 +413,10 @@ public class Start {
                 catch(Exception e){
                     System.out.println(e.getMessage());
                 }
-                lands[i].SetDeed(new Deed(name, cost, mortgage, rent, i));
+                lands[i].SetDeed(new Property(
+                    name, cost, mortgage, rent, 100,
+                    rent_1_house, rent_2_house, rent_3_house, rent_4_house, rent_hotel,
+                    100, i));
             }
             
         }

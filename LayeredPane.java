@@ -16,7 +16,7 @@ public class LayeredPane extends JPanel implements ActionListener {
     private static JLayeredPane layeredPane;
     private static JFrame frame;
     private PlayerGUI[] player_guis;
-    private JButton button;
+    private static JButton roll_button;
     private static Player[] players;
     private BuyDialog buy_dialog;
     private static JLabel[] money_labels;
@@ -52,6 +52,7 @@ public class LayeredPane extends JPanel implements ActionListener {
                 200, 200);
             layeredPane.add(property_containers[i], 0);
         }
+        roll_button.setEnabled(true);
         frame.repaint();
         frame.revalidate();
     }
@@ -106,10 +107,10 @@ public class LayeredPane extends JPanel implements ActionListener {
             layeredPane.add(property_containers[i], 0);
         }
 
-        button = new JButton("Click");
-        button.addActionListener(this);
-        button.setBounds(200, 200, 80, 25);
-        layeredPane.add(button, 0);
+        roll_button = new JButton("Roll");
+        roll_button.addActionListener(this);
+        roll_button.setBounds(200, 200, 80, 25);
+        layeredPane.add(roll_button, 0);
 
         buy_dialog = new BuyDialog();
         buy_dialog.setOpaque(true);
@@ -151,6 +152,7 @@ public class LayeredPane extends JPanel implements ActionListener {
         boolean buyable = Start.CheckBuyable();
         if(buyable){
             buy_dialog.setVisible(true);
+            roll_button.setEnabled(false);
         }
         frame.repaint();
         frame.revalidate();

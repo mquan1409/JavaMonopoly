@@ -52,6 +52,7 @@ public class BuyDialog extends JPanel implements ActionListener {
         if(e.getActionCommand() == "nope"){
             setVisible(false);
             Start.NextTurn();
+            LayeredPane.UpdateDataPanels();
         }
         if(e.getActionCommand() == "buy"){
             Start.Buy();
