@@ -17,6 +17,7 @@ public class Property extends Deed{
     private int NumHouses;
     private int SetNumber;
     private int MaxPropsOnSet;
+    private Coord CoordHouse;
     private boolean Hotel;
 
     @Override
@@ -42,6 +43,14 @@ public class Property extends Deed{
     @Override
     public int GetHouseCost(){
         return CostOfHouse;
+    }
+    @Override
+    public void SetCoordHouse(Coord value){
+        CoordHouse = value;
+    }
+    @Override
+    public Coord GetCoordHouse(){
+        return CoordHouse;
     }
     Property(String name, int cost, int mort, int rent, int houseCost,
                int r1, int r2, int r3, int r4, int rh, int hotelCost, int setNum, int maxPropsOnSet, int id)

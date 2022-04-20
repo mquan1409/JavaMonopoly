@@ -22,6 +22,7 @@ public class Start {
     public static Land[] lands;
     public static ArrayList<Integer> sets_buyhouseable = new ArrayList<Integer>();
     public static int num_houses_buying = 0;
+    public static Coord coord_houses [] = new Coord [22];
     public static void Buy(){
         Deed deed = lands[players[turn].GetPosition()].GetDeed();
         if(deed != null){
@@ -60,8 +61,9 @@ public class Start {
         var num_houses_int = Integer.parseInt(num_houses);
         Deed deed = lands[property_id].GetDeed();
         if(deed != null && sets_buyhouseable.contains(deed.GetSetNumber())){
-            deed.SetNumHouses(lands[property_id].GetDeed().GetNumHouses() + num_houses_int);
+            deed.SetNumHouses(deed.GetNumHouses() + num_houses_int);
             players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - (deed.GetHouseCost() * num_houses_int));
+            LayeredPane.AddHouse(deed);
             LayeredPane.UpdateDataPanels();
             System.out.println(lands[property_id].GetDeed().GetNumHouses());
         }
@@ -123,6 +125,87 @@ public class Start {
             double_counter = 0;
     }
     public static void main(String args[]){
+        //Setting up coordinates for the houses
+            //first row
+
+            coord_houses[0]=new Coord(425, 480);
+
+
+            coord_houses[1]=new Coord(425-90, 480);
+    
+            
+            coord_houses[2]=new Coord(425-90-90-45, 480);
+            
+    
+            coord_houses[3]=new Coord(425-90-90-45-90, 480);
+            
+    
+            coord_houses[4]=new Coord(425-90-90-45-90-45, 480);
+            
+    
+            //second row
+            coord_houses[5]=new Coord(50, 435);
+            
+    
+            coord_houses[6]=new Coord(50, 435-90);
+            
+    
+            coord_houses[7]=new Coord(50, 435-90-45);
+            
+    
+            coord_houses[8]=new Coord(50, 435-90-45-90);
+            
+    
+            coord_houses[9]=new Coord(50, 435-90-45-90-90);
+            
+    
+            coord_houses[10]=new Coord(50, 435-90-45-90-90-45);
+            
+    
+    
+    
+            //third row
+    
+            coord_houses[11]=new Coord(65, 57);
+            
+    
+            coord_houses[12]=new Coord( 65+90, 57);
+            
+    
+            coord_houses[13]=new Coord( 65+45+90, 57);
+            
+    
+    
+            coord_houses[14]=new Coord( 65+45+90+90, 57);
+            
+    
+            coord_houses[15]=new Coord( 65+45+90+90+45, 57);
+            
+    
+            coord_houses[16]=new Coord( 65+45+90+90+45+90, 57);
+    
+    
+    
+            //fourth row
+    
+            coord_houses[17]=new Coord( 470, 57 + 17);
+        
+    
+    
+            coord_houses[18]=new Coord( 470, 75+45);
+        
+    
+    
+            coord_houses[19]=new Coord( 470, 75+45+90);
+    
+    
+    
+            coord_houses[20]=new Coord( 470, 75+45+90+90+45);
+    
+    
+    
+            coord_houses[21]=new Coord( 470, 75+45+90+90+45+90);
+
         player_positions = new int[4];        //store the positions of player 0-3
         players = new Player[4];              //there are 4 players (player 0-3)
 
@@ -207,6 +290,7 @@ public class Start {
         }
         lands = new Land[40];
         Integer[] property_nums = {1,3,6,8,9,11,13,14,16,18,19,21,23,24,26,27,29,31,32,34,37,39};
+        int counter = 0;
         for(int i = 0; i < 40; i ++){
             String name = "N/A";
             int cost = 0, 
@@ -259,11 +343,17 @@ public class Start {
                     name, cost, mortgage, rent, 100,
                     rent_1_house, rent_2_house, rent_3_house, rent_4_house, rent_hotel,
                     100, set_number, max_props_on_set, i));
+                //System.out.println(Board.coord_houses[counter].x += 200);
+                // Board.coord_houses[counter].y += 60;
+                coord_houses[counter].x += 199;
+                coord_houses[counter].y += 97;
+                lands[i].GetDeed().SetCoordHouse(coord_houses[counter]);
+                counter ++;
             }
         }
-        players[0].Buy(lands[6].GetDeed().GetId(), 100, lands[6].GetDeed().GetInstance());
-        players[0].Buy(lands[8].GetDeed().GetId(), 100, lands[8].GetDeed().GetInstance());
-        players[0].Buy(lands[9].GetDeed().GetId(), 100, lands[9].GetDeed().GetInstance());
+        players[0].Buy(lands[21].GetDeed().GetId(), 100, lands[21].GetDeed().GetInstance());
+        players[0].Buy(lands[23].GetDeed().GetId(), 100, lands[23].GetDeed().GetInstance());
+        players[0].Buy(lands[24].GetDeed().GetId(), 100, lands[24].GetDeed().GetInstance());
         turn -= 3;
     }
 

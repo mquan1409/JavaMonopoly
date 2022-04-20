@@ -72,6 +72,11 @@ public class Deed {
     public int GetHouseCost(){
         return -1;
     }
+    public void SetCoordHouse(Coord value){
+    }
+    public Coord GetCoordHouse(){
+        return new Coord(0, 0);
+    }
     public Deed (String name, int cost, int mort, int rent, int id)
     {
         Name = name;

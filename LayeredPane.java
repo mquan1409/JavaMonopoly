@@ -22,6 +22,21 @@ public class LayeredPane extends JPanel implements ActionListener {
     private BuyDialog buy_dialog;
     private static JLabel[] money_labels;
     private static PropertyContainerGUI[] property_containers;
+    public static void AddHouse(Deed deed){
+        if(deed.GetNumHouses() > 0){
+            for(int i = 0; i < deed.GetNumHouses(); i ++){
+                HouseGUI house_gui = new HouseGUI();
+                house_gui.setOpaque(false);
+                house_gui.setBackground(Color.PINK);
+                house_gui.setBorder(null);
+                if(deed.GetId()/10 == 0 || deed.GetId()/10 == 2)
+                    house_gui.setBounds(deed.GetCoordHouse().x + (10*i), deed.GetCoordHouse().y, 8, 8);
+                else if(deed.GetId()/10 == 1 || deed.GetId()/10 == 3)
+                    house_gui.setBounds(deed.GetCoordHouse().x, deed.GetCoordHouse().y + (10*i), 8, 8);
+                layeredPane.add(house_gui, 0);
+            }
+        }
+    }
     public static void UpdateDataPanels(){
         Coord[] money_label_positions = {new Coord(0,0), new Coord(750,0), new Coord(750,600), new Coord(0,600)};
         for(int i = 0; i < 4; i ++){
@@ -173,6 +188,15 @@ public class LayeredPane extends JPanel implements ActionListener {
                 System.out.println(Start.sets_buyhouseable.get(0));
                 Start.BuyHouses();
             }
+            // Deed deed = Start.lands[players[Start.turn].GetPosition()].GetDeed();
+            // if(deed.GetNumHouses() > 0){
+            //     var house_gui = new HouseGUI();
+            //     house_gui.setOpaque(false);
+            //     house_gui.setBackground(Color.PINK);
+            //     house_gui.setBorder(null);
+            //     house_gui.setBounds(deed.GetCoordHouse().x, deed.GetCoordHouse().y, 140, 140);
+            //     layeredPane.add(house_gui);
+            // }
         }
     }
 }

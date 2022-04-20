@@ -7,6 +7,7 @@ import javax.swing.border.CompoundBorder;
 
 public class Board extends JComponent
 {
+    public static Coord coord_houses [] = new Coord [22];
     public Board(){
         
     }
@@ -59,12 +60,6 @@ public class Board extends JComponent
         g.fillRect( 45+16, 55 , 44, 15 );
         g.fillRect( 45+16+45*2, 55 , 44, 15 );
         g.fillRect( 45+16+45*3, 55 , 44, 15 );
-
-        g.setColor( new Color( 0, 250, 0 ) );
-        g.fillRect( 45+20, 57 , 7, 9 );
-        g.fillRect( 45+20+10, 57 , 7, 9 );
-        g.fillRect( 45+20+20, 57 , 7, 9 );
-        g.fillRect( 45+20+30, 57 , 7, 9 );
         
 
         g.setColor( new Color( 254, 242, 0 ) );
@@ -116,6 +111,89 @@ public class Board extends JComponent
         g.fillRect( 45, 71 , 15, 44 );
         g.fillRect( 45, 71+45*1 , 15, 44 );
         g.fillRect( 45, 71+45*3 , 15, 44 );
+
+
+
+        //first row
+
+        coord_houses[0]=new Coord(425, 480);
+
+
+        coord_houses[1]=new Coord(425-90, 480);
+
+       
+        coord_houses[2]=new Coord(425-90-90-45, 480);
+        
+
+        coord_houses[3]=new Coord(425-90-90-45-90, 480);
+        
+
+        coord_houses[4]=new Coord(425-90-90-45-90-45, 480);
+       
+
+        //second row
+        coord_houses[5]=new Coord(50, 435);
+        
+
+        coord_houses[6]=new Coord(50, 435-90);
+        
+
+        coord_houses[7]=new Coord(50, 435-90-45);
+        
+
+        coord_houses[8]=new Coord(50, 435-90-45-90);
+        
+
+        coord_houses[9]=new Coord(50, 435-90-45-90-90);
+        
+
+        coord_houses[10]=new Coord(50, 435-90-45-90-90-45);
+        
+
+
+
+        //third row
+
+        coord_houses[11]=new Coord(65, 57);
+        
+
+        coord_houses[12]=new Coord( 65+90, 57);
+       
+
+        coord_houses[13]=new Coord( 65+45+90, 57);
+       
+
+
+        coord_houses[14]=new Coord( 65+45+90+90, 57);
+       
+
+        coord_houses[15]=new Coord( 65+45+90+90+45, 57);
+     
+
+        coord_houses[16]=new Coord( 65+45+90+90+45+90, 57);
+
+
+
+        //fourth row
+
+        coord_houses[17]=new Coord( 470, 57);
+  
+
+
+        coord_houses[18]=new Coord( 470, 75+45);
+ 
+
+
+        coord_houses[19]=new Coord( 470, 75+45+90);
+
+
+
+        coord_houses[20]=new Coord( 470, 75+45+90+90+45);
+
+
+
+        coord_houses[21]=new Coord( 470, 75+45+90+90+45+90);
+ 
 
 
 
