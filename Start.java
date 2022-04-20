@@ -140,8 +140,7 @@ public class Start {
             di1=random.nextInt(6)+1;
             di2=random.nextInt(6)+1;
             
-            String message = "You rolled ".concat(String.valueOf(di1)).concat(" and ").concat(String.valueOf(di2));
-            JOptionPane.showMessageDialog(null, message);
+
             System.out.println(String.valueOf(di1 + di2));
             int current_position = players[turn].GetPosition();
             // di1 = 1;
@@ -155,8 +154,10 @@ public class Start {
                 money=players[turn].GetMoneyOwned()+200;
                 players[turn].SetMoneyOwned(money);
                 players[turn].SetPosition(check);
-                LayeredPane.UpdateDataPanels();
             }
+            LayeredPane.UpdateDataPanels();
+            String message = "You rolled ".concat(String.valueOf(di1)).concat(" and ").concat(String.valueOf(di2));
+            JOptionPane.showMessageDialog(null, message);
             if((di1 == di2) && (di1 != 0)){
                 JOptionPane.showMessageDialog(null, "You rolled double!");
                 System.out.println("Roll double!");
@@ -177,7 +178,6 @@ public class Start {
                 String prop = JOptionPane.showInputDialog("Where do you want to buy: ");
                 int property = Integer.parseInt(prop);
                 players[turn].Buy(lands[property].GetDeed().GetId(), lands[property].GetDeed().GetCostOfDeed(), lands[property].GetDeed().GetInstance());
-                LayeredPane.UpdateDataPanels();
             }
             if(players[turn].GetPosition() == 4){
                 JOptionPane.showMessageDialog(null, "Income Tax: 200");
@@ -187,6 +187,7 @@ public class Start {
                 JOptionPane.showMessageDialog(null, "Income Tax: 75");
                 players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 75);
             }
+            LayeredPane.UpdateDataPanels();
         }
     }
     public static void main(String args[]){
@@ -337,7 +338,7 @@ public class Start {
         JFrame frame = new JFrame("Start");
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000,1000);
+        frame.setSize(1200,1050);
         var label = new JLabel("Main Panel", SwingConstants.CENTER);
         label.setBackground(new Color(255,0,0));
         LayeredPane layeredPane = new LayeredPane(players);

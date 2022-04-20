@@ -78,13 +78,13 @@ public class LayeredPane extends JPanel implements ActionListener {
         property_containers = new PropertyContainerGUI[4];
         this.players = players;
         layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(1000, 1000));
+        layeredPane.setPreferredSize(new Dimension(1200, 1050));
         board = new Board();
         board.setOpaque(true);
         board.setBackground(Color.BLUE);
         board.setForeground(Color.BLACK);
         board.setBorder(null);
-        board.setBounds(200, 100, 1000, 1000);
+        board.setBounds(200, 100, 1200, 1050);
         layeredPane.add(board, 1);
         for(int i = 0; i < 4; i ++){
             player_guis[i] = new PlayerGUI();
