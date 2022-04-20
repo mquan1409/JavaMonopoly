@@ -52,17 +52,24 @@ public class Property extends Deed{
     public Coord GetCoordHouse(){
         return CoordHouse;
     }
-    Property(String name, int cost, int mort, int rent, int houseCost,
-               int r1, int r2, int r3, int r4, int rh, int hotelCost, int setNum, int maxPropsOnSet, int id)
+    Property(String name, int cost, int mort, int rent,
+               int r1, int r2, int r3, int r4, int rh, int setNum, int maxPropsOnSet, int id)
     {
         super(name, cost, mort, rent, id);
         RentProp = new int[6];
         RentProp[0] = rent; RentProp[1] = r1; RentProp[2] = r2; RentProp[3] = r3; RentProp[4] = r4; RentProp[5] = rh;
         NumHouses = 0;
-        CostOfHouse = houseCost;
-        hotelCost = CostOfHotel;
         SetNumber = setNum;
         MaxPropsOnSet = maxPropsOnSet;
         Hotel = false;
+        if(id/10 == 0)
+            CostOfHouse = 50;
+        if(id/10 == 1)
+            CostOfHouse = 100;
+        if(id/10 == 2)
+            CostOfHouse = 150;
+        if(id/10 == 3)
+            CostOfHouse = 200;
+        CostOfHotel = CostOfHouse;
     }
 }

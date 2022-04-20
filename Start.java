@@ -341,8 +341,8 @@ public class Start {
                 }
                 lands[i].SetDeed(new Property(
                     name, cost, mortgage, rent, 100,
-                    rent_1_house, rent_2_house, rent_3_house, rent_4_house, rent_hotel,
-                    100, set_number, max_props_on_set, i));
+                    rent_1_house, rent_2_house, rent_3_house, rent_4_house,
+                    set_number, max_props_on_set, i));
                 //System.out.println(Board.coord_houses[counter].x += 200);
                 // Board.coord_houses[counter].y += 60;
                 coord_houses[counter].x += 199;
