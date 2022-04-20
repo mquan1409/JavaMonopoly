@@ -126,6 +126,8 @@ public class Start {
         else{
             di1=random.nextInt(6)+1;
             di2=random.nextInt(6)+1;
+            String message = "You rolled ".concat(String.valueOf(di1)).concat(" and ").concat(String.valueOf(di2));
+            JOptionPane.showMessageDialog(null, message);
             System.out.println(String.valueOf(di1 + di2));
             int current_position = players[turn].GetPosition();
             // var test = 15;
@@ -140,6 +142,7 @@ public class Start {
                 LayeredPane.UpdateDataPanels();
             }
             if((di1 == di2) && (di1 != 0)){
+                JOptionPane.showMessageDialog(null, "You rolled double!");
                 System.out.println("Roll double!");
                 double_counter ++;
             }
@@ -154,6 +157,12 @@ public class Start {
                 || players[turn].GetPosition() == 22
                 || players[turn].GetPosition() == 36)
                 chancecard();
+            if(players[turn].GetPosition() == 20){
+                String prop = JOptionPane.showInputDialog("Where do you want to buy: ");
+                int property = Integer.parseInt(prop);
+                players[turn].Buy(lands[property].GetDeed().GetId(), lands[property].GetDeed().GetCostOfDeed(), lands[property].GetDeed().GetInstance());
+                LayeredPane.UpdateDataPanels();
+            }
             
         }
     }

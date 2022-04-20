@@ -141,7 +141,7 @@ public class LayeredPane extends JPanel implements ActionListener {
         buy_dialog.setOpaque(true);
         buy_dialog.setBackground(Color.PINK);
         buy_dialog.setBorder(null);
-        buy_dialog.setBounds(250, 250, 150, 45);
+        buy_dialog.setBounds(350, 300, 150, 45);
         buy_dialog.setVisible(false);
         layeredPane.add(buy_dialog, 0);
         add(layeredPane);
