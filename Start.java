@@ -43,6 +43,7 @@ public class Start {
         int rent_cost = deed.GetRent();
         players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - rent_cost);
         players[deed.GetOwnerId()].SetMoneyOwned(players[deed.GetOwnerId()].GetMoneyOwned() + rent_cost);
+        LayeredPane.UpdateDataPanels();
         System.out.println(String.valueOf(turn).concat(" rent ").concat(String.valueOf(deed.GetOwnerId())).concat(" with ").concat(String.valueOf(rent_cost)));
     }
     public static boolean Rentable(){
@@ -58,15 +59,15 @@ public class Start {
         var property_id = Integer.parseInt(property);
         var num_houses_int = Integer.parseInt(num_houses);
         Deed deed = lands[property_id].GetDeed();
-        if(sets_buyhouseable.contains(deed.GetSetNumber())){
+        if(deed != null && sets_buyhouseable.contains(deed.GetSetNumber())){
             deed.SetNumHouses(lands[property_id].GetDeed().GetNumHouses() + num_houses_int);
             players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - (deed.GetHouseCost() * num_houses_int));
             LayeredPane.UpdateDataPanels();
+            System.out.println(lands[property_id].GetDeed().GetNumHouses());
         }
         else{
             JOptionPane.showMessageDialog(null, "Cannot buy house on that property");
         }
-        System.out.println(lands[property_id].GetDeed().GetNumHouses());
     }
     public static boolean CheckBuyHouseable(){
         sets_buyhouseable.clear();
