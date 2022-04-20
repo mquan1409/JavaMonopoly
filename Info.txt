@@ -1,4 +1,4 @@
-Mediterranean Avenue/Old Kent Rd	
+Mediterranean Avenue	
 60
 50
 2
@@ -10,7 +10,7 @@ Mediterranean Avenue/Old Kent Rd
 30
 0
 2
-Baltic Avenue/Whitechapel Rd	
+Baltic Avenue	
 60
 50
 4
@@ -22,7 +22,7 @@ Baltic Avenue/Whitechapel Rd
 30
 0
 2
-Oriental Avenue/The Angel, Islington	
+Oriental Avenue	
 100
 50
 6
@@ -34,7 +34,7 @@ Oriental Avenue/The Angel, Islington
 50
 1
 3
-Vermont Avenue/Euston Rd	
+Vermont Avenue	
 100
 50
 6
@@ -46,7 +46,7 @@ Vermont Avenue/Euston Rd
 50
 1
 3
-Connecticut Avenue/Pentonville Rd	
+Connecticut Avenue	
 120
 50
 8
@@ -58,7 +58,7 @@ Connecticut Avenue/Pentonville Rd
 60
 1
 3
-St. Charles Place/Pall Mall	
+St. Charles Place
 140
 100
 10
@@ -70,7 +70,7 @@ St. Charles Place/Pall Mall
 70
 2
 3
-States Avenue/Whitehall	
+States Avenue
 140
 100
 10
@@ -82,7 +82,7 @@ States Avenue/Whitehall
 70
 2
 3
-Virginia Avenue/Northumberland Ave	
+Virginia Avenue
 160
 100
 12
@@ -94,7 +94,7 @@ Virginia Avenue/Northumberland Ave
 80
 2
 3
-St. James Place/Bow St	
+St. James Place
 180
 100
 14
@@ -106,7 +106,7 @@ St. James Place/Bow St
 90
 3
 3
-Tennessee Avenue/Marlborough St	
+Tennessee Avenue
 180
 100
 14
@@ -118,7 +118,7 @@ Tennessee Avenue/Marlborough St
 90
 3
 3
-New York Avenue/Vine St	
+New York Avenue
 200
 100
 16
@@ -130,7 +130,7 @@ New York Avenue/Vine St
 100
 3
 3
-Kentucky Avenue/Strand	
+Kentucky Avenue
 220
 150
 18
@@ -142,7 +142,7 @@ Kentucky Avenue/Strand
 110
 4
 3
-Indiana Avenue/Fleet St	
+Indiana Avenue
 220
 150
 18
@@ -154,7 +154,7 @@ Indiana Avenue/Fleet St
 110
 4
 3
-Illinois Avenue/Trafalgar Sq	
+Illinois Avenue
 240
 150
 20
@@ -166,7 +166,7 @@ Illinois Avenue/Trafalgar Sq
 120
 4
 3
-Atlantic Avenue/Leicester Sq	
+Atlantic Avenue	
 260
 150
 22
@@ -178,7 +178,7 @@ Atlantic Avenue/Leicester Sq
 130
 5
 3
-Ventnor Avenue/Coventry St	
+Ventnor Avenue
 260
 150
 22
@@ -190,7 +190,7 @@ Ventnor Avenue/Coventry St
 130
 5
 3
-* Marvin Gardens [Marven Gardens]/Piccadilly	
+Marvin Gardens
 280
 150
 24
@@ -202,7 +202,7 @@ Ventnor Avenue/Coventry St
 140
 5
 3
-Pacific Avenue/Regent St	
+Pacific Avenue
 300
 200
 26
@@ -214,7 +214,7 @@ Pacific Avenue/Regent St
 150
 6
 3
-North Carolina Avenue [South Carolina Avenue]/Oxford St	
+North Carolina Avenue
 300
 200
 26
@@ -226,7 +226,7 @@ North Carolina Avenue [South Carolina Avenue]/Oxford St
 150
 6
 3
-Pennsylvania Avenue/Bond St	
+Pennsylvania Avenue
 320
 200
 28
@@ -238,7 +238,7 @@ Pennsylvania Avenue/Bond St
 160
 6
 3
-Park Place/Park Lane	
+Park Place
 350
 200
 35
@@ -250,7 +250,7 @@ Park Place/Park Lane
 175
 7
 2
-Boardwalk/Mayfair	
+Boardwalk
 400
 200
 50

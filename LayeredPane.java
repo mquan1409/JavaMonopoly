@@ -133,7 +133,7 @@ public class LayeredPane extends JPanel implements ActionListener {
         buy_house_button = new JButton("Buy Houses");
         buy_house_button.setActionCommand("House");
         buy_house_button.addActionListener(this);
-        buy_house_button.setBounds(400, 50, 80, 25);
+        buy_house_button.setBounds(400, 50, 150, 25);
         layeredPane.add(buy_house_button, 0);
 
         buy_dialog = new BuyDialog();
