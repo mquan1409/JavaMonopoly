@@ -145,6 +145,16 @@ public class Start {
             }
             if(di1 != di2)
                 double_counter = 0;
+
+            if(players[turn].GetPosition() == 2
+                || players[turn].GetPosition() == 17
+                || players[turn].GetPosition() == 33)
+                chestcard();
+            if(players[turn].GetPosition() == 7
+                || players[turn].GetPosition() == 22
+                || players[turn].GetPosition() == 36)
+                chancecard();
+            
         }
     }
     public static void main(String args[]){
@@ -386,9 +396,11 @@ public class Start {
         Random random = new Random();
         int money;
         int card = random.nextInt(14);
+        String message = "";
         switch(card)
         {
             case 0:
+            message = "Advance to go and collect $200";
             System.out.println("Advance to go and collect $200");
             players[turn].SetPosition(0);
             money=players[turn].GetMoneyOwned()+200;
@@ -396,31 +408,35 @@ public class Start {
             break;
 
             case 1:
+            message = "Bank Error in your favor. Collect $200";
             System.out.println("Bank Error in your favor. Collect $200");
             money=players[turn].GetMoneyOwned()+200;
             players[turn].SetMoneyOwned(money);
             break;
 
             case 2:
+            message = "Doctor's fee. Pay $50";
             System.out.println("Doctor's fee. Pay $50");
             money=players[turn].GetMoneyOwned()-50;
             players[turn].SetMoneyOwned(money);
             break;
 
             case 3:
+            message = "Doctor's fee. Pay $50";
             System.out.println("From sale of stock you get $50");
             money=players[turn].GetMoneyOwned()+50;
             players[turn].SetMoneyOwned(money);
             break;
 
-
             case 4:
+            message = "Go to Jail. Go directly to jail, do not pass Go, do not collect $200";
             System.out.println("Go to Jail. Go directly to jail, do not pass Go, do not collect $200");
             players[turn].SetPosition(10);
             players[turn].injail();
             break;
 
             case 5:
+            message = "Holiday fund matures. Receive $100";
             System.out.println("Holiday fund matures. Receive $100");
             money=players[turn].GetMoneyOwned()+100;
             players[turn].SetMoneyOwned(money);
@@ -428,6 +444,7 @@ public class Start {
 
 
             case 6:
+            message = "Income tax refund. Collect $20";
             System.out.println("Income tax refund. Collect $20");
             money=players[turn].GetMoneyOwned()+20;
             players[turn].SetMoneyOwned(money);
@@ -435,6 +452,7 @@ public class Start {
 
 
             case 7:
+            message = "It is your birthday. Collect $10 from every player";
             System.out.println("It is your birthday. Collect $10 from every player");
             for(int x=0; x<4; x++)
             {
@@ -452,6 +470,7 @@ public class Start {
 
 
             case 8:
+            message = "Life insurance matures. Collect $100";
             System.out.println("Life insurance matures. Collect $100");
             money=players[turn].GetMoneyOwned()+100;
             players[turn].SetMoneyOwned(money);
@@ -459,6 +478,7 @@ public class Start {
 
 
             case 9:
+            message = "Pay hospital fees of $100";
             System.out.println("Pay hospital fees of $100");
             money=players[turn].GetMoneyOwned()-100;
             players[turn].SetMoneyOwned(money);
@@ -467,6 +487,7 @@ public class Start {
 
 
             case 10:
+            message = "Pay school fees of $50";
             System.out.println("Pay school fees of $50");
             money=players[turn].GetMoneyOwned()-50;
             players[turn].SetMoneyOwned(money);
@@ -474,6 +495,7 @@ public class Start {
 
 
             case 11:
+            message = "Receive $25 consultancy fee";
             System.out.println("Receive $25 consultancy fee");
             money=players[turn].GetMoneyOwned()+25;
             players[turn].SetMoneyOwned(money);
@@ -481,6 +503,7 @@ public class Start {
 
 
             case 12:
+            message = "You have won second prize in a beauty contest. Collect $10";
             System.out.println("You have won second prize in a beauty contest. Collect $10");
             money=players[turn].GetMoneyOwned()+10;
             players[turn].SetMoneyOwned(money);
@@ -488,11 +511,14 @@ public class Start {
 
 
             case 13:
+            message = "You inherit $100";
             System.out.println("You inherit $100");
             money=players[turn].GetMoneyOwned()+100;
             players[turn].SetMoneyOwned(money);
             break;
         }
+        JOptionPane.showMessageDialog(null, "Community chest card: ".concat(message));
+        LayeredPane.UpdateDataPanels();
     }
 
     public static void chancecard()
@@ -500,9 +526,11 @@ public class Start {
         Random random = new Random();
         int money;
         int card = random.nextInt(10);
+        String message = "";
         switch(card)
         {
             case 0:
+            message = "Advance to go and collect $200";
             System.out.println("Advance to go and collect $200");
             players[turn].SetPosition(0);
             money=players[turn].GetMoneyOwned()+200;
@@ -511,6 +539,7 @@ public class Start {
 
             
             case 1:
+            message = "Advance to Illinois Avenue. If you pass Go, collect $200";
             System.out.println("Advance to Illinois Avenue. If you pass Go, collect $200");
             if(players[turn].GetPosition()>24)
             {
@@ -521,6 +550,7 @@ public class Start {
             break;
 
             case 2:
+            message = "Advance to St. Charles Place. If you pass Go, collect $200";
             System.out.println("Advance to St. Charles Place. If you pass Go, collect $200");
             if(players[turn].GetPosition()>11)
             {
@@ -532,6 +562,7 @@ public class Start {
 
 
             case 3:
+            message = "Take a trip to Reading Railroad. If you pass Go, collect $200";
             System.out.println("Take a trip to Reading Railroad. If you pass Go, collect $200");
             if(players[turn].GetPosition()>5)
             {
@@ -543,12 +574,14 @@ public class Start {
 
 
             case 4:
+            message = "Bank pays you dividend of $50";
             System.out.println("Bank pays you dividend of $50");
             money=players[turn].GetMoneyOwned()+50;
             players[turn].SetMoneyOwned(money);
             break;
 
             case 5:
+            message = "Go Back 3 Spaces";
             System.out.println("Go Back 3 Spaces");
             money=players[turn].GetPosition();
             money=money-3;
@@ -559,11 +592,13 @@ public class Start {
 
 
             case 6:
+            message = "Go to Jail. Go directly to Jail, do not pass Go, do not collect $200";
             System.out.println("Go to Jail. Go directly to Jail, do not pass Go, do not collect $200");
             players[turn].SetPosition(10);
             break;
 
             case 7:
+            message = "Speeding fine $15";
             System.out.println("Speeding fine $15");
             money=players[turn].GetMoneyOwned()-15;
             players[turn].SetMoneyOwned(money);
@@ -571,6 +606,7 @@ public class Start {
 
 
             case 8:
+            message = "You have been elected Chairman of the Board. Pay each player $50";
             System.out.println("You have been elected Chairman of the Board. Pay each player $50");
             for(int i=0; i<4; i++)
             {
@@ -589,11 +625,15 @@ public class Start {
 
 
             case 9:
+            message = "Your building loan matures. Collect $150";
+            money=players[turn].GetMoneyOwned()+150;
             System.out.println("Your building loan matures. Collect $150");
             money=players[turn].GetMoneyOwned()+150;
             players[turn].SetMoneyOwned(money);
             break;
         }
+        JOptionPane.showMessageDialog(null, "Community chest card: ".concat(message));
+        LayeredPane.UpdateDataPanels();
     }
 }
 
