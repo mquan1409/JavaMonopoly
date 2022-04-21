@@ -67,11 +67,22 @@ public class Start {
             return false;
     }
     public static void BuyHouses(){
-        var property = JOptionPane.showInputDialog("Input where you want buy houses: ");
-        var num_houses = JOptionPane.showInputDialog("Input number of houses: ");
+        var property = JOptionPane.showInputDialog("Input where you want to buy houses: ");
         var property_id = Integer.parseInt(property);
-        var num_houses_int = Integer.parseInt(num_houses);
         Deed deed = lands[property_id].GetDeed();
+        String num_houses = "0";
+        if(deed.GetNumHouses() < 4){
+            num_houses = JOptionPane.showInputDialog("Input number of houses: ");
+        }
+        else if(deed.GetNumHouses() == 4){
+            var hotel_confirm = JOptionPane.showConfirmDialog(null, "Do you want to buy a hotel?", "", 0);
+            System.out.print("Confirm: ");
+            System.out.println(hotel_confirm);
+            if(hotel_confirm == 0){
+                deed.SetNumHouses(deed.GetNumHouses() + 1);
+            }
+        }
+        var num_houses_int = Integer.parseInt(num_houses);
         if(deed != null && sets_buyhouseable.contains(deed.GetSetNumber())){
             deed.SetNumHouses(deed.GetNumHouses() + num_houses_int);
             players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - (deed.GetHouseCost() * num_houses_int));
@@ -439,7 +450,7 @@ public class Start {
                 //System.out.println(Board.coord_houses[counter].x += 200);
                 // Board.coord_houses[counter].y += 60;
                 coord_houses[counter].x += 199;
-                coord_houses[counter].y += 97;
+                coord_houses[counter].y += 17;
                 lands[i].GetDeed().SetCoordHouse(coord_houses[counter]);
                 counter ++;
             }
