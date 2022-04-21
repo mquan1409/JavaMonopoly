@@ -61,7 +61,7 @@ public class Start {
     }
     public static boolean Rentable(){
         Deed deed = lands[players[turn].GetPosition()].GetDeed();
-        if(deed != null)
+        if(deed != null && deed.GetOwnerId() != turn)
             return deed.IsOwned();
         else
             return false;
@@ -143,9 +143,8 @@ public class Start {
 
             System.out.println(String.valueOf(di1 + di2));
             int current_position = players[turn].GetPosition();
-            // di1 = 1;
-            // di2 = 3;
-            // var test = 15;
+            // di1 = 3;
+            // di2 = 4;
             players[turn].SetPosition(current_position += di1 + di2);
             check=players[turn].GetPosition()%40;
             if(players[turn].GetPosition() == check){
@@ -169,29 +168,53 @@ public class Start {
             if(di1 != di2)
                 double_counter = 0;
 
-            if(players[turn].GetPosition() == 2
-                || players[turn].GetPosition() == 17
-                || players[turn].GetPosition() == 33)
-                chestcard();
-            if(players[turn].GetPosition() == 7
-                || players[turn].GetPosition() == 22
-                || players[turn].GetPosition() == 36)
-                chancecard();
-            if(players[turn].GetPosition() == 20){
-                String prop = JOptionPane.showInputDialog("Where do you want to buy: ");
-                int property = Integer.parseInt(prop);
-                players[turn].Buy(lands[property].GetDeed().GetId(), lands[property].GetDeed().GetCostOfDeed(), lands[property].GetDeed().GetInstance());
-            }
-            if(players[turn].GetPosition() == 4){
-                JOptionPane.showMessageDialog(null, "Income Tax: 200");
-                players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 200);
-            }
-            if(players[turn].GetPosition() == 38){
-                JOptionPane.showMessageDialog(null, "Income Tax: 75");
-                players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 75);
-            }
-            LayeredPane.UpdateDataPanels();
+            // if(players[turn].GetPosition() == 2
+            //     || players[turn].GetPosition() == 17
+            //     || players[turn].GetPosition() == 33)
+            //     chestcard();
+            // if(players[turn].GetPosition() == 7
+            //     || players[turn].GetPosition() == 22
+            //     || players[turn].GetPosition() == 36)
+            //     chancecard();
+            // if(players[turn].GetPosition() == 20){
+            //     String prop = JOptionPane.showInputDialog("Where do you want to buy: ");
+            //     int property = Integer.parseInt(prop);
+            //     players[turn].Buy(lands[property].GetDeed().GetId(), lands[property].GetDeed().GetCostOfDeed(), lands[property].GetDeed().GetInstance());
+            // }
+            // if(players[turn].GetPosition() == 4){
+            //     JOptionPane.showMessageDialog(null, "Income Tax: 200");
+            //     players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 200);
+            // }
+            // if(players[turn].GetPosition() == 38){
+            //     JOptionPane.showMessageDialog(null, "Income Tax: 75");
+            //     players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 75);
+            // }
+            // LayeredPane.UpdateDataPanels();
         }
+    }
+    public static void CheckSpecialLands(){
+        if(players[turn].GetPosition() == 2
+            || players[turn].GetPosition() == 17
+            || players[turn].GetPosition() == 33)
+            chestcard();
+        if(players[turn].GetPosition() == 7
+            || players[turn].GetPosition() == 22
+            || players[turn].GetPosition() == 36)
+            chancecard();
+        if(players[turn].GetPosition() == 20){
+            String prop = JOptionPane.showInputDialog("Where do you want to buy: ");
+            int property = Integer.parseInt(prop);
+            players[turn].Buy(lands[property].GetDeed().GetId(), lands[property].GetDeed().GetCostOfDeed(), lands[property].GetDeed().GetInstance());
+        }
+        if(players[turn].GetPosition() == 4){
+            JOptionPane.showMessageDialog(null, "Income Tax: 200");
+            players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 200);
+        }
+        if(players[turn].GetPosition() == 38){
+            JOptionPane.showMessageDialog(null, "Income Tax: 75");
+            players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 75);
+        }
+        LayeredPane.UpdateDataPanels();
     }
     public static void main(String args[]){
         //Setting up coordinates for the houses
@@ -555,6 +578,9 @@ public class Start {
         }
         JOptionPane.showMessageDialog(null, "Community chest card: ".concat(message));
         LayeredPane.UpdateDataPanels();
+        LayeredPane.PlayerGUIsMove();
+        if(players[turn].getjail())
+            Start.NextTurn();
     }
 
     public static void chancecard()
@@ -563,6 +589,7 @@ public class Start {
         int money;
         int card = random.nextInt(10);
         String message = "";
+        // card = 6;      //Test
         switch(card)
         {
             case 0:
@@ -631,6 +658,7 @@ public class Start {
             message = "Go to Jail. Go directly to Jail, do not pass Go, do not collect $200";
             System.out.println("Go to Jail. Go directly to Jail, do not pass Go, do not collect $200");
             players[turn].SetPosition(10);
+            players[turn].injail();
             break;
 
             case 7:
@@ -670,6 +698,9 @@ public class Start {
         }
         JOptionPane.showMessageDialog(null, "Chance card: ".concat(message));
         LayeredPane.UpdateDataPanels();
+        LayeredPane.PlayerGUIsMove();
+        if(players[turn].getjail())
+            Start.NextTurn();
     }
 }
 
