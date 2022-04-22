@@ -77,6 +77,12 @@ public class Deed {
     public Coord GetCoordHouse(){
         return new Coord(0, 0);
     }
+    public ArrayList<HouseGUI> GetHouseGUIs(){
+        return null;
+    }
+    public ArrayList<HouseGUI> UpdateHouseGUIs(){
+        return null;
+    }
     public Deed (String name, int cost, int mort, int rent, int id)
     {
         Name = name;

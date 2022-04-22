@@ -119,6 +119,37 @@ public class Start {
         }
         return false;
     }
+    public static void SellHouses(){
+        var property = JOptionPane.showInputDialog("Input where you want to sell houses: ");
+        var property_id = Integer.parseInt(property);
+        Deed deed = lands[property_id].GetDeed();
+        String num_houses = "0";
+        if(deed.GetNumHouses() <= 4){
+            num_houses = JOptionPane.showInputDialog("Input number of houses: ");
+        }
+        else if(deed.GetNumHouses() > 4){
+            var hotel_confirm = JOptionPane.showConfirmDialog(null, "Do you want to sell a hotel?", "", 0);
+            System.out.print("Confirm: ");
+            System.out.println(hotel_confirm);
+            if(hotel_confirm == 0){
+                deed.SetNumHouses(deed.GetNumHouses() - 1);
+            }
+        }
+        var num_houses_int = Integer.parseInt(num_houses);
+        if(deed != null && sets_buyhouseable.contains(deed.GetSetNumber())){
+            deed.SetNumHouses(deed.GetNumHouses() - num_houses_int);
+            players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() + (deed.GetHouseCost() * num_houses_int) * 1/2);
+            LayeredPane.AddHouse(deed);
+            LayeredPane.UpdateDataPanels();
+            System.out.println(lands[property_id].GetDeed().GetNumHouses());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Cannot buy house on that property");
+        }
+    }
+    public static boolean CheckSellHouseable(){
+        return true;
+    }
     public static void NextTurn(){
         if(double_counter == 0)
             turn ++;

@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.util.ArrayList;
 
 public class Property extends Deed{
 //*****************************************************************************
@@ -19,6 +21,7 @@ public class Property extends Deed{
     private int MaxPropsOnSet;
     private Coord CoordHouse;
     private boolean Hotel;
+    private ArrayList<HouseGUI> house_guis;
 
     @Override
     public void SetNumHouses(int value){
@@ -52,6 +55,26 @@ public class Property extends Deed{
     public Coord GetCoordHouse(){
         return CoordHouse;
     }
+
+    public ArrayList<HouseGUI> GetHouseGUIs(){
+        return house_guis;
+    }
+
+    public ArrayList<HouseGUI> UpdateHouseGUIs(){
+        house_guis.clear();
+        for(int i = 0; i < GetNumHouses(); i ++){
+            HouseGUI house_gui = new HouseGUI();
+            house_gui.setOpaque(false);
+            house_gui.setBackground(Color.PINK);
+            house_gui.setBorder(null);
+            if(GetId()/10 == 0 || GetId()/10 == 2)
+                house_gui.setBounds(GetCoordHouse().x + (14*i), GetCoordHouse().y, 10, 10);
+            else if(GetId()/10 == 1 || GetId()/10 == 3)
+                house_gui.setBounds(GetCoordHouse().x, GetCoordHouse().y + (14*i) + 2, 10, 10);
+            house_guis.add(house_gui);
+        }
+        return house_guis;
+    }
     Property(String name, int cost, int mort, int rent,
                int r1, int r2, int r3, int r4, int rh, int setNum, int maxPropsOnSet, int id)
     {
@@ -71,5 +94,6 @@ public class Property extends Deed{
         if(id/10 == 3)
             CostOfHouse = 200;
         CostOfHotel = CostOfHouse;
+        house_guis = new ArrayList<HouseGUI>();
     }
 }

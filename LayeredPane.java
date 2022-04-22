@@ -18,6 +18,7 @@ public class LayeredPane extends JPanel implements ActionListener {
     private static PlayerGUI[] player_guis;
     private static JButton roll_button;
     private static JButton buy_house_button;
+    private static JButton sell_house_button;
     private static Player[] players;
     private BuyDialog buy_dialog;
     private PayJail pay_dialog;
@@ -25,17 +26,21 @@ public class LayeredPane extends JPanel implements ActionListener {
     private static PropertyContainerGUI[] property_containers;
     public static void AddHouse(Deed deed){
         if(deed.GetNumHouses() > 0){
-            for(int i = 0; i < deed.GetNumHouses(); i ++){
-                HouseGUI house_gui = new HouseGUI();
-                house_gui.setOpaque(false);
-                house_gui.setBackground(Color.PINK);
-                house_gui.setBorder(null);
-                if(deed.GetId()/10 == 0 || deed.GetId()/10 == 2)
-                    house_gui.setBounds(deed.GetCoordHouse().x + (14*i), deed.GetCoordHouse().y, 10, 10);
-                else if(deed.GetId()/10 == 1 || deed.GetId()/10 == 3)
-                    house_gui.setBounds(deed.GetCoordHouse().x, deed.GetCoordHouse().y + (14*i) + 2, 10, 10);
-                layeredPane.add(house_gui, 0);
+            //clean old houses
+            ArrayList<HouseGUI> old_house_guis = deed.GetHouseGUIs();
+            for(int i = 0; i < old_house_guis.size(); i ++){
+                layeredPane.remove(old_house_guis.get(i));
             }
+            ArrayList<HouseGUI> new_house_guis = deed.UpdateHouseGUIs();
+            for(int i = 0; i < deed.GetNumHouses(); i ++){
+                layeredPane.add(new_house_guis.get(i), 0);
+            }
+        }
+    }
+    public static void RemoveHouses(Deed deed){
+        ArrayList<HouseGUI> old_house_guis = deed.GetHouseGUIs();
+        for(int i = 0; i < old_house_guis.size(); i ++){
+            layeredPane.remove(old_house_guis.get(i));
         }
     }
     public static void UpdateDataPanels(){
@@ -132,10 +137,16 @@ public class LayeredPane extends JPanel implements ActionListener {
         layeredPane.add(roll_button, 0);
 
         buy_house_button = new JButton("Buy Houses");
-        buy_house_button.setActionCommand("House");
+        buy_house_button.setActionCommand("Buy House");
         buy_house_button.addActionListener(this);
         buy_house_button.setBounds(400, 5, 150, 25);
         layeredPane.add(buy_house_button, 0);
+
+        sell_house_button = new JButton("Sell Houses");
+        sell_house_button.setActionCommand("Sell House");
+        sell_house_button.addActionListener(this);
+        sell_house_button.setBounds(600, 5, 150, 25);
+        layeredPane.add(sell_house_button, 0);
 
         buy_dialog = new BuyDialog();
         buy_dialog.setOpaque(true);
@@ -227,7 +238,7 @@ public class LayeredPane extends JPanel implements ActionListener {
                 Start.NextTurn();
             //button.setEnabled(false);
         }
-        else if(e.getActionCommand() == "House"){
+        else if(e.getActionCommand() == "Buy House"){
             if(Start.CheckBuyHouseable()){
                 System.out.println("Can Buy");
                 System.out.println(Start.sets_buyhouseable.get(0));
@@ -242,6 +253,12 @@ public class LayeredPane extends JPanel implements ActionListener {
             //     house_gui.setBounds(deed.GetCoordHouse().x, deed.GetCoordHouse().y, 140, 140);
             //     layeredPane.add(house_gui);
             // }
+        }
+        else if(e.getActionCommand() == "Sell House"){
+            if(Start.CheckSellHouseable()){
+                System.out.println("Can Sell");
+                Start.SellHouses();
+            }
         }
     }
 }
