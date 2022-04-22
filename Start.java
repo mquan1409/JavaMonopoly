@@ -150,12 +150,16 @@ public class Start {
         else{
             di1=random.nextInt(6)+1;
             di2=random.nextInt(6)+1;
+
+            di1=5;
+            di2=5;
             
 
             System.out.println(String.valueOf(di1 + di2));
             int current_position = players[turn].GetPosition();
-            // di1 = 3;
-            // di2 = 4;
+            // di1 = 1;
+            // di2 = 3;
+            // var test = 15;
             players[turn].SetPosition(current_position += di1 + di2);
             check=players[turn].GetPosition()%40;
             if(players[turn].GetPosition() == check){
@@ -319,59 +323,65 @@ public class Start {
         int x=24;
         int y=30;
 
+        //0-9
         //Row 1
-        for(int i=1; i<11; i++)
-            players[3].GetCoords()[i] = new Coord(520 - (x+45*i+5), y+10+450);
-        for(int i=1; i<11; i++)
-            players[1].GetCoords()[i] = new Coord(520 - (x+45*i+5), y+450+15+10);
-        for(int i=1; i<11; i++)
-            players[2].GetCoords()[i] = new Coord(520 - (x+45*i+15+5), y+450+10);
-        for(int i=1; i<11; i++)
-            players[0].GetCoords()[i] = new Coord(520 - (x+45*i+15+5), y+450+15+10);
+        
+        for(int i=1, num=9; i<11; i++)
+            players[0].GetCoords()[num--] = new Coord(x+58*i+5, y+10+580);
+        for(int i=1, num=9; i<11; i++)
+            players[3].GetCoords()[num--] = new Coord(x+58*i+5, y+580+20+10);
+        for(int i=1, num=9; i<11; i++)
+            players[1].GetCoords()[num--] = new Coord(x+58*i+20+5, y+580+10);
+        for(int i=1, num=9; i<11; i++)
+            players[2].GetCoords()[num--] = new Coord(x+58*i+20+5, y+580+20+10);
 
+        //10-20
         //Row 2
-        for(int i=1; i<11; i++)
-            players[0].GetCoords()[10 + i] = new Coord(x-5, 525 - (y+45*i));
-        for(int i=1; i<11; i++)
-            players[1].GetCoords()[10 + i] = new Coord(x+10, 525 - (y+45*i));
-        for(int i=1; i<11; i++)
-            players[2].GetCoords()[10 + i] = new Coord(x-5, 525 - (y+45*i+15));
-        for(int i=1; i<11; i++)
-            players[3].GetCoords()[10 + i] = new Coord(x+10, 525 - (y+45*i+15));
+        for(int i=1, num=9; i<11; i++)
+        players[0].GetCoords()[10 + num--] = new Coord(x-5,y+58*i);
+        for(int i=1, num=9; i<11; i++)
+        players[1].GetCoords()[10 + num--] = new Coord(x+15, y+58*i);
+        for(int i=1, num=9; i<11; i++)
+        players[3].GetCoords()[10 + num--] = new Coord(x-5, y+58*i+20);
+        for(int i=1, num=9; i<11; i++)
+        players[2].GetCoords()[10 + num--] = new Coord(x+15, y+58*i+20);
+        
 
+        //21-30
         //Row 3
-        for(int i=1; i<11; i++)
-            players[2].GetCoords()[20 + i] = new Coord(x+45*i, y);
-        for(int i=1; i<11; i++)
-            players[3].GetCoords()[20 + i] = new Coord(x+45*i+15, y);
-        for(int i=1; i<11; i++)
-            players[0].GetCoords()[20 + i] = new Coord(x+45*i, y+15);
-        for(int i=1; i<11; i++)
-            players[1].GetCoords()[20 + i] = new Coord(x+45*i+15, y+15);
+        for(int i=0; i<11; i++)
+            players[0].GetCoords()[20 + i] = new Coord(x+58*i, y);
+        for(int i=0; i<11; i++)
+            players[1].GetCoords()[20 + i] = new Coord(x+58*i+20, y);
+        for(int i=0; i<11; i++)
+            players[3].GetCoords()[20 + i] = new Coord(x+58*i, y+20);
+        for(int i=0; i<11; i++)
+            players[2].GetCoords()[20 + i] = new Coord(x+58*i+20, y+20);
 
+        //31-39
         //Row 4
-        for(int i=1; i<11; i++)
-            players[2].GetCoords()[30 + i] = new Coord(x+455, y+45*i);
-        for(int i=1; i<11; i++)
-            players[3].GetCoords()[30 + i] = new Coord(x+455+15, y+45*i);
-        for(int i=1; i<11; i++)
-            players[0].GetCoords()[30 + i] = new Coord(x+455, y+45*i+15);
-        for(int i=1; i<11; i++)
-            players[1].GetCoords()[30 + i] = new Coord(x+455+15, y+45*i+15);
+        for(int i=1; i<10; i++)
+        players[0].GetCoords()[30 + i] = new Coord(x+585, y+58*i);
+        for(int i=1; i<10; i++)
+        players[1].GetCoords()[30 + i] = new Coord(x+585+20, y+58*i);
+        for(int i=1; i<10; i++)
+        players[3].GetCoords()[30 + i] = new Coord(x+585, y+58*i+20);
+        for(int i=1; i<10; i++)
+        players[2].GetCoords()[30 + i] = new Coord(x+585+20, y+58*i+20);
+
+           
 
         int offset_x = 201;
         int offset_y = 21;
 
-        for(int i = 1; i < 41; i ++){
+        for(int i = 0; i < 40; i ++){
             for(int j = 0; j < 4; j ++){
                 players[j].GetCoords()[i].x += offset_x;
                 players[j].GetCoords()[i].y += offset_y;
             }
         }
-        players[0].GetCoords()[0] = players[0].GetCoords()[40];
-        players[1].GetCoords()[0] = players[1].GetCoords()[40];
-        players[2].GetCoords()[0] = players[2].GetCoords()[40];
-        players[3].GetCoords()[0] = players[3].GetCoords()[40];
+        
+        
         JFrame frame = new JFrame("Start");
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -600,7 +610,6 @@ public class Start {
         int money;
         int card = random.nextInt(10);
         String message = "";
-        // card = 6;      //Test
         switch(card)
         {
             case 0:

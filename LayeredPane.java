@@ -39,7 +39,7 @@ public class LayeredPane extends JPanel implements ActionListener {
         }
     }
     public static void UpdateDataPanels(){
-        Coord[] money_label_positions = {new Coord(0,0), new Coord(750,0), new Coord(750,600), new Coord(0,600)};
+        Coord[] money_label_positions = {new Coord(0,0), new Coord(870,0), new Coord(870,600), new Coord(0,600)};
         for(int i = 0; i < 4; i ++){
             layeredPane.remove(money_labels[i]);
             money_labels[i] = new JLabel(
@@ -101,7 +101,7 @@ public class LayeredPane extends JPanel implements ActionListener {
         player_guis[1].SetColor(Color.RED);
         player_guis[2].SetColor(Color.BLUE);
         player_guis[3].SetColor(Color.GRAY);
-        Coord[] money_label_positions = {new Coord(0,0), new Coord(750,0), new Coord(750,600), new Coord(0,600)};
+        Coord[] money_label_positions = {new Coord(0,0), new Coord(870,0), new Coord(870,600), new Coord(0,600)};
         for(int i = 0; i < 4; i ++){
             money_labels[i] = new JLabel(
                 "Player ".concat(String.valueOf(i + 1)).concat(": ").concat(String.valueOf(players[i].GetMoneyOwned())));
