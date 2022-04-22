@@ -25,14 +25,15 @@ public class LayeredPane extends JPanel implements ActionListener {
     private static JLabel[] money_labels;
     private static PropertyContainerGUI[] property_containers;
     public static void UpdateHouses(Deed deed){
-        if(deed.GetNumHouses() > 0){
+        if(deed.GetNumHouses() >= 0){
             //clean old houses
             ArrayList<HouseGUI> old_house_guis = deed.GetHouseGUIs();
             for(int i = 0; i < old_house_guis.size(); i ++){
                 layeredPane.remove(old_house_guis.get(i));
             }
+            UpdateDataPanels();
             ArrayList<HouseGUI> new_house_guis = deed.UpdateHouseGUIs();
-            for(int i = 0; i < deed.GetNumHouses(); i ++){
+            for(int i = 0; i < new_house_guis.size(); i ++){
                 layeredPane.add(new_house_guis.get(i), 0);
             }
         }

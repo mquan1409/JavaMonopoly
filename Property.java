@@ -62,16 +62,29 @@ public class Property extends Deed{
 
     public ArrayList<HouseGUI> UpdateHouseGUIs(){
         house_guis.clear();
-        for(int i = 0; i < GetNumHouses(); i ++){
-            HouseGUI house_gui = new HouseGUI();
-            house_gui.setOpaque(false);
-            house_gui.setBackground(Color.PINK);
-            house_gui.setBorder(null);
+        if(GetNumHouses() == 5){
+            HotelGUI hotel_gui = new HotelGUI();
+            hotel_gui.setOpaque(false);
+            hotel_gui.setBackground(Color.PINK);
+            hotel_gui.setBorder(null);
             if(GetId()/10 == 0 || GetId()/10 == 2)
-                house_gui.setBounds(GetCoordHouse().x + (14*i), GetCoordHouse().y, 10, 10);
+                hotel_gui.setBounds(GetCoordHouse().x + (14*1), GetCoordHouse().y, 12, 12);
             else if(GetId()/10 == 1 || GetId()/10 == 3)
-                house_gui.setBounds(GetCoordHouse().x, GetCoordHouse().y + (14*i) + 2, 10, 10);
-            house_guis.add(house_gui);
+                hotel_gui.setBounds(GetCoordHouse().x, GetCoordHouse().y + (14*1) + 2, 12, 12);
+            house_guis.add(hotel_gui);
+        }
+        else{
+            for(int i = 0; i < GetNumHouses(); i ++){
+                HouseGUI house_gui = new HouseGUI();
+                house_gui.setOpaque(false);
+                house_gui.setBackground(Color.PINK);
+                house_gui.setBorder(null);
+                if(GetId()/10 == 0 || GetId()/10 == 2)
+                    house_gui.setBounds(GetCoordHouse().x + (14*i), GetCoordHouse().y, 10, 10);
+                else if(GetId()/10 == 1 || GetId()/10 == 3)
+                    house_gui.setBounds(GetCoordHouse().x, GetCoordHouse().y + (14*i) + 2, 10, 10);
+                house_guis.add(house_gui);
+            }
         }
         return house_guis;
     }
