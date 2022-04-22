@@ -86,10 +86,10 @@ public class Start {
             }
         }
         var num_houses_int = Integer.parseInt(num_houses);
-        if(deed != null && sets_buyhouseable.contains(deed.GetSetNumber())){
+        if(deed != null && sets_buyhouseable.contains(deed.GetSetNumber()) && deed.GetOwnerId() == turn){
             deed.SetNumHouses(deed.GetNumHouses() + num_houses_int);
             players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - (deed.GetHouseCost() * num_houses_int));
-            LayeredPane.AddHouse(deed);
+            LayeredPane.UpdateHouses(deed);
             LayeredPane.UpdateDataPanels();
             System.out.println(lands[property_id].GetDeed().GetNumHouses());
         }
@@ -122,12 +122,16 @@ public class Start {
     public static void SellHouses(){
         var property = JOptionPane.showInputDialog("Input where you want to sell houses: ");
         var property_id = Integer.parseInt(property);
+        boolean sellhouseable = false;
         Deed deed = lands[property_id].GetDeed();
         String num_houses = "0";
-        if(deed.GetNumHouses() <= 4){
+        var num_houses_int = Integer.parseInt(num_houses);
+        if(0 < deed.GetNumHouses() && deed.GetNumHouses() <= 4){
             num_houses = JOptionPane.showInputDialog("Input number of houses: ");
+            num_houses_int = Integer.parseInt(num_houses);
+            sellhouseable = true;
         }
-        else if(deed.GetNumHouses() > 4){
+        if(deed.GetNumHouses() == 5){
             var hotel_confirm = JOptionPane.showConfirmDialog(null, "Do you want to sell a hotel?", "", 0);
             System.out.print("Confirm: ");
             System.out.println(hotel_confirm);
@@ -135,16 +139,19 @@ public class Start {
                 deed.SetNumHouses(deed.GetNumHouses() - 1);
             }
         }
-        var num_houses_int = Integer.parseInt(num_houses);
-        if(deed != null && sets_buyhouseable.contains(deed.GetSetNumber())){
+        if(deed != null 
+            && sets_buyhouseable.contains(deed.GetSetNumber()) 
+            && deed.GetOwnerId() == turn 
+            && sellhouseable 
+            && num_houses_int <= deed.GetNumHouses()){
             deed.SetNumHouses(deed.GetNumHouses() - num_houses_int);
             players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() + (deed.GetHouseCost() * num_houses_int) * 1/2);
-            LayeredPane.AddHouse(deed);
+            LayeredPane.UpdateHouses(deed);
             LayeredPane.UpdateDataPanels();
             System.out.println(lands[property_id].GetDeed().GetNumHouses());
         }
         else{
-            JOptionPane.showMessageDialog(null, "Cannot buy house on that property");
+            JOptionPane.showMessageDialog(null, "Cannot sell houses on that property");
         }
     }
     public static boolean CheckSellHouseable(){

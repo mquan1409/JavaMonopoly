@@ -24,7 +24,7 @@ public class LayeredPane extends JPanel implements ActionListener {
     private PayJail pay_dialog;
     private static JLabel[] money_labels;
     private static PropertyContainerGUI[] property_containers;
-    public static void AddHouse(Deed deed){
+    public static void UpdateHouses(Deed deed){
         if(deed.GetNumHouses() > 0){
             //clean old houses
             ArrayList<HouseGUI> old_house_guis = deed.GetHouseGUIs();
@@ -35,12 +35,6 @@ public class LayeredPane extends JPanel implements ActionListener {
             for(int i = 0; i < deed.GetNumHouses(); i ++){
                 layeredPane.add(new_house_guis.get(i), 0);
             }
-        }
-    }
-    public static void RemoveHouses(Deed deed){
-        ArrayList<HouseGUI> old_house_guis = deed.GetHouseGUIs();
-        for(int i = 0; i < old_house_guis.size(); i ++){
-            layeredPane.remove(old_house_guis.get(i));
         }
     }
     public static void UpdateDataPanels(){
