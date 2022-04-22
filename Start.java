@@ -233,85 +233,85 @@ public class Start {
     }
     public static void main(String args[]){
         //Setting up coordinates for the houses
-            //first row
+        //first row
 
-            coord_houses[0]=new Coord(425, 480);
+        coord_houses[0]=new Coord(540, 610);
 
 
-            coord_houses[1]=new Coord(425-90, 480);
-    
-            
-            coord_houses[2]=new Coord(425-90-90-45, 480);
-            
-    
-            coord_houses[3]=new Coord(425-90-90-45-90, 480);
-            
-    
-            coord_houses[4]=new Coord(425-90-90-45-90-45, 480);
-            
-    
-            //second row
-            coord_houses[5]=new Coord(50, 435);
-            
-    
-            coord_houses[6]=new Coord(50, 435-90);
-            
-    
-            coord_houses[7]=new Coord(50, 435-90-45);
-            
-    
-            coord_houses[8]=new Coord(50, 435-90-45-90);
-            
-    
-            coord_houses[9]=new Coord(50, 435-90-45-90-90);
-            
-    
-            coord_houses[10]=new Coord(50, 435-90-45-90-90-45);
-            
-    
-    
-    
-            //third row
-    
-            coord_houses[11]=new Coord(65, 57);
-            
-    
-            coord_houses[12]=new Coord( 65+90, 57);
-            
-    
-            coord_houses[13]=new Coord( 65+45+90, 57);
-            
-    
-    
-            coord_houses[14]=new Coord( 65+45+90+90, 57);
-            
-    
-            coord_houses[15]=new Coord( 65+45+90+90+45, 57);
-            
-    
-            coord_houses[16]=new Coord( 65+45+90+90+45+90, 57);
-    
-    
-    
-            //fourth row
-    
-            coord_houses[17]=new Coord( 470, 57 + 17);
+        coord_houses[1]=new Coord(540-116, 610);
+
+       
+        coord_houses[2]=new Coord(540-116-116-58, 610);
         
-    
-    
-            coord_houses[18]=new Coord( 470, 75+45);
+
+        coord_houses[3]=new Coord(540-116-116-58-116, 610);
         
-    
-    
-            coord_houses[19]=new Coord( 470, 75+45+90);
-    
-    
-    
-            coord_houses[20]=new Coord( 470, 75+45+90+90+45);
-    
-    
-    
-            coord_houses[21]=new Coord( 470, 75+45+90+90+45+90);
+
+        coord_houses[4]=new Coord(540-116-116-58-116-58, 610);
+       
+
+        //second row
+        coord_houses[5]=new Coord(60, 550);
+        
+
+        coord_houses[6]=new Coord(60, 550-116);
+        
+
+        coord_houses[7]=new Coord(60, 550-116-58);
+        
+
+        coord_houses[8]=new Coord(60, 550-116-58-116);
+        
+
+        coord_houses[9]=new Coord(60, 550-116-58-116-116);
+        
+
+        coord_houses[10]=new Coord(60, 550-116-58-116-116-58);
+        
+
+
+
+        //third row
+
+        coord_houses[11]=new Coord(75, 70);
+        
+
+        coord_houses[12]=new Coord( 75+116, 70);
+       
+
+        coord_houses[13]=new Coord( 75+58+116, 70);
+       
+
+
+        coord_houses[14]=new Coord( 75+58+116+116, 70);
+       
+
+        coord_houses[15]=new Coord( 75+58+116+116+58, 70);
+     
+
+        coord_houses[16]=new Coord( 75+58+116+116+58+116, 70);
+
+
+
+        //fourth row
+
+        coord_houses[17]=new Coord( 598, 86);
+  
+
+
+        coord_houses[18]=new Coord( 598, 86+58);
+ 
+
+
+        coord_houses[19]=new Coord( 598, 86+58+116);
+
+
+
+        coord_houses[20]=new Coord( 598, 86+58+116+116+58);
+
+
+
+        coord_houses[21]=new Coord( 598, 86+58+116+116+58+116);
 
         player_positions = new int[4];        //store the positions of player 0-3
         players = new Player[4];              //there are 4 players (player 0-3)
@@ -465,9 +465,9 @@ public class Start {
                 counter ++;
             }
         }
-        players[0].Buy(lands[6].GetDeed().GetId(), lands[6].GetDeed().GetCostOfDeed(), lands[6].GetDeed().GetInstance());
-        players[0].Buy(lands[8].GetDeed().GetId(), lands[8].GetDeed().GetCostOfDeed(), lands[8].GetDeed().GetInstance());
-        players[0].Buy(lands[9].GetDeed().GetId(), lands[9].GetDeed().GetCostOfDeed(), lands[9].GetDeed().GetInstance());
+        players[0].Buy(lands[16].GetDeed().GetId(), lands[16].GetDeed().GetCostOfDeed(), lands[16].GetDeed().GetInstance());
+        players[0].Buy(lands[18].GetDeed().GetId(), lands[18].GetDeed().GetCostOfDeed(), lands[18].GetDeed().GetInstance());
+        players[0].Buy(lands[19].GetDeed().GetId(), lands[19].GetDeed().GetCostOfDeed(), lands[19].GetDeed().GetInstance());
         turn -= 3;
     }
 
