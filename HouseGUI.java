@@ -13,7 +13,7 @@ public class HouseGUI extends JPanel {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.setColor(color);
-        g.drawRect(0,0,8,8);
-        g.fillRect(0,0,8,8);
+        g.drawRect(0,0,10,10);
+        g.fillRect(0,0,10,10);
     }
 }

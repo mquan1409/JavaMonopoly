@@ -31,9 +31,9 @@ public class LayeredPane extends JPanel implements ActionListener {
                 house_gui.setBackground(Color.PINK);
                 house_gui.setBorder(null);
                 if(deed.GetId()/10 == 0 || deed.GetId()/10 == 2)
-                    house_gui.setBounds(deed.GetCoordHouse().x + (10*i), deed.GetCoordHouse().y, 8, 8);
+                    house_gui.setBounds(deed.GetCoordHouse().x + (14*i), deed.GetCoordHouse().y, 10, 10);
                 else if(deed.GetId()/10 == 1 || deed.GetId()/10 == 3)
-                    house_gui.setBounds(deed.GetCoordHouse().x, deed.GetCoordHouse().y + (10*i), 8, 8);
+                    house_gui.setBounds(deed.GetCoordHouse().x, deed.GetCoordHouse().y + (14*i) + 2, 10, 10);
                 layeredPane.add(house_gui, 0);
             }
         }

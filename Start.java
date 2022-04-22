@@ -36,6 +36,9 @@ public class Start {
         }
     }
     public static boolean CheckBuyable(){
+        if(double_counter == 3){
+            return false;
+        }
         if((lands[players[turn].GetPosition()].GetDeed() != null)
             && (!lands[players[turn].GetPosition()].GetDeed().IsOwned())){
             return true;
@@ -151,8 +154,8 @@ public class Start {
             di1=random.nextInt(6)+1;
             di2=random.nextInt(6)+1;
 
-            di1=5;
-            di2=5;
+            di1=2;
+            di2=2;
             
 
             System.out.println(String.valueOf(di1 + di2));
@@ -208,26 +211,43 @@ public class Start {
         }
     }
     public static void CheckSpecialLands(){
-        if(players[turn].GetPosition() == 2
+        if(double_counter == 3){
+            JOptionPane.showMessageDialog(null, "You rolled double 3 times! You are cheating! Go directly to jail, do not pass Go, do not collect $200!");
+            players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 75);
+            players[turn].SetPosition(10);
+            players[turn].injail();
+            LayeredPane.PlayerGUIsMove();
+            double_counter = 0;
+            Start.NextTurn();
+        }
+        else if(players[turn].GetPosition() == 2
             || players[turn].GetPosition() == 17
             || players[turn].GetPosition() == 33)
             chestcard();
-        if(players[turn].GetPosition() == 7
+        else if(players[turn].GetPosition() == 7
             || players[turn].GetPosition() == 22
             || players[turn].GetPosition() == 36)
             chancecard();
-        if(players[turn].GetPosition() == 20){
+        else if(players[turn].GetPosition() == 20){
             String prop = JOptionPane.showInputDialog("Where do you want to buy: ");
             int property = Integer.parseInt(prop);
             players[turn].Buy(lands[property].GetDeed().GetId(), lands[property].GetDeed().GetCostOfDeed(), lands[property].GetDeed().GetInstance());
         }
-        if(players[turn].GetPosition() == 4){
+        else if(players[turn].GetPosition() == 4){
             JOptionPane.showMessageDialog(null, "Income Tax: 200");
             players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 200);
         }
-        if(players[turn].GetPosition() == 38){
+        else if(players[turn].GetPosition() == 38){
             JOptionPane.showMessageDialog(null, "Income Tax: 75");
             players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 75);
+        }
+        else if(players[turn].GetPosition() == 30){
+            JOptionPane.showMessageDialog(null, "Go directly to jail, do not pass Go, do not collect $200");
+            players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 75);
+            players[turn].SetPosition(10);
+            players[turn].injail();
+            LayeredPane.PlayerGUIsMove();
+            Start.NextTurn();
         }
         LayeredPane.UpdateDataPanels();
     }
