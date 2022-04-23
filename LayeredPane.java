@@ -20,7 +20,7 @@ public class LayeredPane extends JPanel implements ActionListener {
     private static JButton buy_house_button;
     private static JButton sell_house_button;
     private static Player[] players;
-    private BuyDialog buy_dialog;
+    public static BuyDialog buy_dialog;
     private PayJail pay_dialog;
     private static JLabel[] money_labels;
     private static PropertyContainerGUI[] property_containers;
@@ -206,6 +206,7 @@ public class LayeredPane extends JPanel implements ActionListener {
             int turn = Start.turn;
             Start.Play();
             PlayerGUIsMove();
+            Start.CheckSpecialLands();
             boolean buyable = Start.CheckBuyable();
             if(players[turn].getjail())
             {
@@ -231,7 +232,6 @@ public class LayeredPane extends JPanel implements ActionListener {
             }
             frame.repaint();
             frame.revalidate();
-            Start.CheckSpecialLands();
             if(!buyable&&!players[turn].getjail())
                 Start.NextTurn();
             UpdateDataPanels();

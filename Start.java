@@ -199,8 +199,8 @@ public class Start {
             di1=random.nextInt(6)+1;
             di2=random.nextInt(6)+1;
 
-            // di1=2;
-            // di2=2;
+            // di1=3;
+            // di2=4;
             
 
             System.out.println(String.valueOf(di1 + di2));
@@ -680,6 +680,7 @@ public class Start {
         int money;
         int card = random.nextInt(10);
         String message = "";
+        // card = 1;
         switch(card)
         {
             case 0:
