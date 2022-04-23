@@ -277,6 +277,7 @@ public class Start {
             String prop = JOptionPane.showInputDialog("Where do you want to buy: ");
             int property = Integer.parseInt(prop);
             players[turn].Buy(lands[property].GetDeed().GetId(), lands[property].GetDeed().GetCostOfDeed(), lands[property].GetDeed().GetInstance());
+            turn --;
         }
         else if(players[turn].GetPosition() == 4){
             JOptionPane.showMessageDialog(null, "Income Tax: 200");
