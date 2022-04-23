@@ -271,8 +271,13 @@ public class Start {
             chestcard();
         else if(players[turn].GetPosition() == 7
             || players[turn].GetPosition() == 22
-            || players[turn].GetPosition() == 36)
-            chancecard();
+            || players[turn].GetPosition() == 36){
+                chancecard();
+                if(players[turn].GetPosition() == 4){
+                    JOptionPane.showMessageDialog(null, "Income Tax: 200");
+                    players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 200);
+                }
+            }
         else if(players[turn].GetPosition() == 20){
             String prop = JOptionPane.showInputDialog("Where do you want to buy: ");
             int property = Integer.parseInt(prop);
