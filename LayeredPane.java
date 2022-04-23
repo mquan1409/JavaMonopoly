@@ -232,7 +232,7 @@ public class LayeredPane extends JPanel implements ActionListener {
             frame.repaint();
             frame.revalidate();
             Start.CheckSpecialLands();
-            if(!buyable&&!players[turn].getjail()&&players[0].GetMoneyOwned()<2500&&players[1].GetMoneyOwned()<2500&&players[2].GetMoneyOwned()<2500&&players[3].GetMoneyOwned()<2500)
+            if(!buyable&&!players[turn].getjail())
                 Start.NextTurn();
             UpdateDataPanels();
         }

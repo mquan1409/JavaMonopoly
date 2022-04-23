@@ -3,7 +3,7 @@ import java.awt.Graphics;
 import java.awt.Color;
 
 public class TurnLabel extends JPanel {
-    private Color color = Color.RED;
+    private Color color = Color.BLACK;
     public void SetColor(Color color){
         this.color = color;
     }

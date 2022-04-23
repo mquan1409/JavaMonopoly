@@ -77,6 +77,7 @@ public class Player {
         else if(deed_id == 12 || deed_id == 28)
             num_utilities_owned ++;
         Start.NextTurn();
+        LayeredPane.UpdateDataPanels();
     }
     public Player(int id){
         Id = id;
