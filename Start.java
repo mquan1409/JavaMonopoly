@@ -276,8 +276,13 @@ public class Start {
         else if(players[turn].GetPosition() == 20){
             String prop = JOptionPane.showInputDialog("Where do you want to buy: ");
             int property = Integer.parseInt(prop);
-            players[turn].Buy(lands[property].GetDeed().GetId(), lands[property].GetDeed().GetCostOfDeed(), lands[property].GetDeed().GetInstance());
-            turn --;
+            if(lands[property].GetDeed() == null || lands[property].GetDeed().IsOwned()){
+                JOptionPane.showMessageDialog(null, "You cannot buy that property! You lost your chance to buy :(");
+            }
+            else{
+                players[turn].Buy(lands[property].GetDeed().GetId(), lands[property].GetDeed().GetCostOfDeed(), lands[property].GetDeed().GetInstance());
+                turn --;
+            }
         }
         else if(players[turn].GetPosition() == 4){
             JOptionPane.showMessageDialog(null, "Income Tax: 200");
