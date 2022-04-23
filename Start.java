@@ -60,7 +60,7 @@ public class Start {
         players[deed.GetOwnerId()].SetMoneyOwned(players[deed.GetOwnerId()].GetMoneyOwned() + rent_cost);
         LayeredPane.UpdateDataPanels();
         System.out.println(String.valueOf(turn + 1).concat(" rent ").concat(String.valueOf(deed.GetOwnerId() + 1)).concat(" with ").concat(String.valueOf(rent_cost)));
-        JOptionPane.showMessageDialog(null, String.valueOf(turn + 1).concat(" rent ").concat(String.valueOf(deed.GetOwnerId() + 1)).concat(" with ").concat(String.valueOf(rent_cost)));
+        JOptionPane.showMessageDialog(null, "Player ".concat(String.valueOf(turn + 1)).concat(" rent "),concate("Player ").concat(String.valueOf(deed.GetOwnerId() + 1)).concat(" with $").concat(String.valueOf(rent_cost)));
     }
     public static boolean Rentable(){
         Deed deed = lands[players[turn].GetPosition()].GetDeed();
