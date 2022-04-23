@@ -24,6 +24,8 @@ public class LayeredPane extends JPanel implements ActionListener {
     private PayJail pay_dialog;
     private static JLabel[] money_labels;
     private static PropertyContainerGUI[] property_containers;
+    private static Coord[] label_positions = {new Coord(0,0), new Coord(870,0), new Coord(870,600), new Coord(0,600)};
+    private static TurnLabel turn_label;
     public static void UpdateHouses(Deed deed){
         if(deed.GetNumHouses() >= 0){
             //clean old houses
@@ -39,7 +41,6 @@ public class LayeredPane extends JPanel implements ActionListener {
         }
     }
     public static void UpdateDataPanels(){
-        Coord[] money_label_positions = {new Coord(0,0), new Coord(870,0), new Coord(870,600), new Coord(0,600)};
         for(int i = 0; i < 4; i ++){
             layeredPane.remove(money_labels[i]);
             money_labels[i] = new JLabel(
@@ -48,8 +49,8 @@ public class LayeredPane extends JPanel implements ActionListener {
             money_labels[i].setBackground(Color.PINK);
             money_labels[i].setBorder(null);
             money_labels[i].setBounds(
-                money_label_positions[i].x, 
-                money_label_positions[i].y, 
+                label_positions[i].x, 
+                label_positions[i].y, 
                 100, 20);
             layeredPane.add(money_labels[i], 0);
         }
@@ -63,11 +64,21 @@ public class LayeredPane extends JPanel implements ActionListener {
             property_containers[i].setOpaque(false);
             property_containers[i].setBorder(null);
             property_containers[i].setBounds(
-                money_label_positions[i].x, 
-                money_label_positions[i].y + 25, 
+                label_positions[i].x, 
+                label_positions[i].y + 25, 
                 200, 200);
             layeredPane.add(property_containers[i], 0);
         }
+        int turn = Start.turn;
+        layeredPane.remove(turn_label);
+            
+        turn_label = new TurnLabel();
+        turn_label.setOpaque(false);
+
+        turn_label.setBorder(null);
+        turn_label.setBounds(label_positions[turn].x + 185, label_positions[turn].y + 5, 12, 12);
+        
+        layeredPane.add(turn_label, 0);
         roll_button.setEnabled(true);
         frame.repaint();
         frame.revalidate();
@@ -101,7 +112,7 @@ public class LayeredPane extends JPanel implements ActionListener {
         player_guis[1].SetColor(Color.RED);
         player_guis[2].SetColor(Color.BLUE);
         player_guis[3].SetColor(Color.GRAY);
-        Coord[] money_label_positions = {new Coord(0,0), new Coord(870,0), new Coord(870,600), new Coord(0,600)};
+        Coord[] label_positions = {new Coord(0,0), new Coord(870,0), new Coord(870,600), new Coord(0,600)};
         for(int i = 0; i < 4; i ++){
             money_labels[i] = new JLabel(
                 "Player ".concat(String.valueOf(i + 1)).concat(": ").concat(String.valueOf(players[i].GetMoneyOwned())));
@@ -109,8 +120,8 @@ public class LayeredPane extends JPanel implements ActionListener {
             money_labels[i].setBackground(Color.PINK);
             money_labels[i].setBorder(null);
             money_labels[i].setBounds(
-                money_label_positions[i].x, 
-                money_label_positions[i].y, 
+                label_positions[i].x, 
+                label_positions[i].y, 
                 100, 20);
             layeredPane.add(money_labels[i], 0);
         }
@@ -119,11 +130,20 @@ public class LayeredPane extends JPanel implements ActionListener {
             property_containers[i].setOpaque(false);
             property_containers[i].setBorder(null);
             property_containers[i].setBounds(
-                money_label_positions[i].x, 
-                money_label_positions[i].y + 25, 
+                label_positions[i].x, 
+                label_positions[i].y + 25, 
                 200, 200);
             layeredPane.add(property_containers[i], 0);
         }
+
+        int turn = 0;
+
+        turn_label = new TurnLabel();
+        turn_label.setOpaque(true);
+        turn_label.setBackground(Color.PINK);
+        turn_label.setBorder(null);
+        turn_label.setBounds((label_positions[turn].x + 185), label_positions[turn].y + 5, 12, 12);
+        layeredPane.add(turn_label, 0);
 
         roll_button = new JButton("Roll");
         roll_button.setActionCommand("Roll");
@@ -150,7 +170,6 @@ public class LayeredPane extends JPanel implements ActionListener {
         buy_dialog.setBounds(350, 300, 150, 45);
         buy_dialog.setVisible(false);
         layeredPane.add(buy_dialog, 0);
-        add(layeredPane);
 
         pay_dialog = new PayJail();
         pay_dialog.setOpaque(true);

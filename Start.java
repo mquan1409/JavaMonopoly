@@ -199,8 +199,8 @@ public class Start {
             di1=random.nextInt(6)+1;
             di2=random.nextInt(6)+1;
 
-            di1=2;
-            di2=2;
+            // di1=2;
+            // di2=2;
             
 
             System.out.println(String.valueOf(di1 + di2));
@@ -283,12 +283,11 @@ public class Start {
             players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 200);
         }
         else if(players[turn].GetPosition() == 38){
-            JOptionPane.showMessageDialog(null, "Income Tax: 75");
-            players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 75);
+            JOptionPane.showMessageDialog(null, "Income Tax: 100");
+            players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 100);
         }
         else if(players[turn].GetPosition() == 30){
             JOptionPane.showMessageDialog(null, "Go directly to jail, do not pass Go, do not collect $200");
-            players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 75);
             players[turn].SetPosition(10);
             players[turn].injail();
             LayeredPane.PlayerGUIsMove();
@@ -530,10 +529,10 @@ public class Start {
                 counter ++;
             }
         }
-        players[0].Buy(lands[16].GetDeed().GetId(), lands[16].GetDeed().GetCostOfDeed(), lands[16].GetDeed().GetInstance());
-        players[0].Buy(lands[18].GetDeed().GetId(), lands[18].GetDeed().GetCostOfDeed(), lands[18].GetDeed().GetInstance());
-        players[0].Buy(lands[19].GetDeed().GetId(), lands[19].GetDeed().GetCostOfDeed(), lands[19].GetDeed().GetInstance());
-        turn -= 3;
+        // players[0].Buy(lands[6].GetDeed().GetId(), lands[6].GetDeed().GetCostOfDeed(), lands[6].GetDeed().GetInstance());
+        // players[0].Buy(lands[8].GetDeed().GetId(), lands[8].GetDeed().GetCostOfDeed(), lands[8].GetDeed().GetInstance());
+        // players[0].Buy(lands[9].GetDeed().GetId(), lands[9].GetDeed().GetCostOfDeed(), lands[9].GetDeed().GetInstance());
+        // turn -= 3;
     }
 
     public static void chestcard()

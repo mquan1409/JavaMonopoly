@@ -17,13 +17,10 @@ import javax.management.ValueExp;
  */
 public class Deed {
     private String Name;
-    private String Owner;
     private int OwnerId;
     private int Id;
     private int CostOfDeed, Mortgage, Rent;
     private boolean isOwned;
-    private boolean IsVisitingJail = false;
-    private boolean IsJail = false;
     public boolean IsOwned(){
         return isOwned;
     }
@@ -91,13 +88,10 @@ public class Deed {
         Mortgage = mort;
         Rent = rent;
         isOwned = false;
-        Owner = "N/A";
         OwnerId = -1;
     }
     public Deed (String name, boolean is_visiting_jail, boolean is_jail){
         Name = name;
-        IsVisitingJail = is_visiting_jail;
-        IsJail = is_jail;
     }
     public Deed(){
         Name = "a";
@@ -105,6 +99,9 @@ public class Deed {
         Mortgage = 0;
         Rent = 0;
         isOwned = false;
-        Owner = "N/A";
+    }
+    public void Reset(){
+        OwnerId = -1;
+        isOwned = false;
     }
 }

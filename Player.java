@@ -2,6 +2,8 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 public class Player {
     private int money_owned;
     private int Id;
@@ -44,6 +46,20 @@ public class Player {
     }
     public void SetMoneyOwned(int money){
         money_owned = money;
+        if(money_owned <= 0){
+            JOptionPane.showMessageDialog(null, "Player ".concat(String.valueOf(Id + 1)).concat(" loses!"));
+            money_owned = 0;
+            SetPosition(0);
+            for(int i = 0; i < id_deeds_owned.size(); i ++){
+                Start.lands[i].GetDeed().Reset();
+            }
+            LayeredPane.PlayerGUIsMove();
+            LayeredPane.UpdateDataPanels();
+        }
+
+        else if(money_owned >= 2500){
+            JOptionPane.showMessageDialog(null, "Player ".concat(String.valueOf(Id + 1)).concat(" wins!"));
+        }
     }
     public int GetNumRailroadsOwned(){
         return num_railroads_owned;

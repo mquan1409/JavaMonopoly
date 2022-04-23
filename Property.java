@@ -109,4 +109,9 @@ public class Property extends Deed{
         CostOfHotel = CostOfHouse;
         house_guis = new ArrayList<HouseGUI>();
     }
+    public void Reset(){
+        super.Reset();
+        NumHouses = 0;
+        house_guis.clear();
+    }
 }
