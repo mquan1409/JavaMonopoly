@@ -206,22 +206,6 @@ public class LayeredPane extends JPanel implements ActionListener {
             int turn = Start.turn;
             Start.Play();
             PlayerGUIsMove();
-            // System.out.print(layeredPane.getComponentCountInLayer(0));
-            // layeredPane.remove(player_guis[turn]);
-            
-            // player_guis[turn] = new PlayerGUI();
-            // player_guis[turn].setOpaque(false);
-            // player_guis[turn].setBackground(Color.PINK);
-    
-            // player_guis[0].SetColor(Color.GREEN);
-            // player_guis[1].SetColor(Color.RED);
-            // player_guis[2].SetColor(Color.BLUE);
-            // player_guis[3].SetColor(Color.GRAY);
-    
-            // player_guis[turn].setBorder(null);
-            // player_guis[turn].setBounds(players[turn].GetCoordNow().x, players[turn].GetCoordNow().y, 140, 140);
-            
-            // layeredPane.add(player_guis[turn], 0);
             boolean buyable = Start.CheckBuyable();
             if(players[turn].getjail())
             {
@@ -250,7 +234,7 @@ public class LayeredPane extends JPanel implements ActionListener {
             Start.CheckSpecialLands();
             if(!buyable&&!players[turn].getjail()&&players[0].GetMoneyOwned()<2500&&players[1].GetMoneyOwned()<2500&&players[2].GetMoneyOwned()<2500&&players[3].GetMoneyOwned()<2500)
                 Start.NextTurn();
-            //button.setEnabled(false);
+            UpdateDataPanels();
         }
         else if(e.getActionCommand() == "Buy House"){
             if(Start.CheckBuyHouseable()){
