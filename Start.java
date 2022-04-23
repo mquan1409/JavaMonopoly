@@ -198,16 +198,10 @@ public class Start {
         else{
             di1=random.nextInt(6)+1;
             di2=random.nextInt(6)+1;
-
-            // di1=3;
-            // di2=4;
             
 
             System.out.println(String.valueOf(di1 + di2));
             int current_position = players[turn].GetPosition();
-            // di1 = 1;
-            // di2 = 3;
-            // var test = 15;
             players[turn].SetPosition(current_position += di1 + di2);
             check=players[turn].GetPosition()%40;
             if(players[turn].GetPosition() == check){
@@ -230,29 +224,6 @@ public class Start {
             }
             if(di1 != di2)
                 double_counter = 0;
-
-            // if(players[turn].GetPosition() == 2
-            //     || players[turn].GetPosition() == 17
-            //     || players[turn].GetPosition() == 33)
-            //     chestcard();
-            // if(players[turn].GetPosition() == 7
-            //     || players[turn].GetPosition() == 22
-            //     || players[turn].GetPosition() == 36)
-            //     chancecard();
-            // if(players[turn].GetPosition() == 20){
-            //     String prop = JOptionPane.showInputDialog("Where do you want to buy: ");
-            //     int property = Integer.parseInt(prop);
-            //     players[turn].Buy(lands[property].GetDeed().GetId(), lands[property].GetDeed().GetCostOfDeed(), lands[property].GetDeed().GetInstance());
-            // }
-            // if(players[turn].GetPosition() == 4){
-            //     JOptionPane.showMessageDialog(null, "Income Tax: 200");
-            //     players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 200);
-            // }
-            // if(players[turn].GetPosition() == 38){
-            //     JOptionPane.showMessageDialog(null, "Income Tax: 75");
-            //     players[turn].SetMoneyOwned(players[turn].GetMoneyOwned() - 75);
-            // }
-            // LayeredPane.UpdateDataPanels();
         }
     }
     public static void CheckSpecialLands(){

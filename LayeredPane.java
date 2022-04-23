@@ -242,15 +242,6 @@ public class LayeredPane extends JPanel implements ActionListener {
                 System.out.println(Start.sets_buyhouseable.get(0));
                 Start.BuyHouses();
             }
-            // Deed deed = Start.lands[players[Start.turn].GetPosition()].GetDeed();
-            // if(deed.GetNumHouses() > 0){
-            //     var house_gui = new HouseGUI();
-            //     house_gui.setOpaque(false);
-            //     house_gui.setBackground(Color.PINK);
-            //     house_gui.setBorder(null);
-            //     house_gui.setBounds(deed.GetCoordHouse().x, deed.GetCoordHouse().y, 140, 140);
-            //     layeredPane.add(house_gui);
-            // }
         }
         else if(e.getActionCommand() == "Sell House"){
             if(Start.CheckSellHouseable()){
