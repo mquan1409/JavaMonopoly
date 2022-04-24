@@ -260,6 +260,8 @@ public class Start {
             else{
                 players[turn].Buy(lands[property].GetDeed().GetId(), lands[property].GetDeed().GetCostOfDeed(), lands[property].GetDeed().GetInstance());
                 turn --;
+                if(turn == (-1))
+                    turn = 3;
             }
         }
         else if(players[turn].GetPosition() == 4){
