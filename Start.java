@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.text.LabelView;
+import java.lang.Object;
 
 public class Start {
     private static int[] player_positions;
@@ -277,7 +279,7 @@ public class Start {
         }
         LayeredPane.UpdateDataPanels();
     }
-    public static void main(String args[]){
+    public static void main(String args[]) throws ClassNotFoundException{
         //Setting up coordinates for the houses
         //first row
 
@@ -440,8 +442,9 @@ public class Start {
         frame.setContentPane(layeredPane);
         frame.setVisible(true);
         BufferedReader input;
+        Class this_class = Class.forName("Start");
         try{
-            input = new BufferedReader(new FileReader("Info.txt"));
+            input = new BufferedReader(new InputStreamReader(this_class.getResourceAsStream("Info.txt")));
         }
         catch(Exception e){
             System.out.println(e.getMessage());
